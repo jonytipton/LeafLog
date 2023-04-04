@@ -14,6 +14,8 @@
 		F62B503D29DB69A500C71595 /* LeafLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F62B503B29DB69A500C71595 /* LeafLog.xcdatamodeld */; };
 		F62B503F29DB69A600C71595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62B503E29DB69A600C71595 /* Assets.xcassets */; };
 		F62B504229DB69A600C71595 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62B504029DB69A600C71595 /* LaunchScreen.storyboard */; };
+		F62B504C29DB7C5500C71595 /* PlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B504B29DB7C5500C71595 /* PlantCell.swift */; };
+		F62B504E29DB889B00C71595 /* NewPlantController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B504D29DB889B00C71595 /* NewPlantController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		F62B503E29DB69A600C71595 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F62B504129DB69A600C71595 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F62B504329DB69A600C71595 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F62B504B29DB7C5500C71595 /* PlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantCell.swift; sourceTree = "<group>"; };
+		F62B504D29DB889B00C71595 /* NewPlantController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlantController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +62,12 @@
 		F62B503129DB69A500C71595 /* LeafLog */ = {
 			isa = PBXGroup;
 			children = (
+				F62B504D29DB889B00C71595 /* NewPlantController.swift */,
 				F62B503229DB69A500C71595 /* AppDelegate.swift */,
 				F62B503429DB69A500C71595 /* SceneDelegate.swift */,
 				F62B503629DB69A500C71595 /* ViewController.swift */,
 				F62B503829DB69A500C71595 /* Main.storyboard */,
+				F62B504B29DB7C5500C71595 /* PlantCell.swift */,
 				F62B503E29DB69A600C71595 /* Assets.xcassets */,
 				F62B504029DB69A600C71595 /* LaunchScreen.storyboard */,
 				F62B504329DB69A600C71595 /* Info.plist */,
@@ -141,7 +147,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F62B504E29DB889B00C71595 /* NewPlantController.swift in Sources */,
 				F62B503729DB69A500C71595 /* ViewController.swift in Sources */,
+				F62B504C29DB7C5500C71595 /* PlantCell.swift in Sources */,
 				F62B503329DB69A500C71595 /* AppDelegate.swift in Sources */,
 				F62B503D29DB69A500C71595 /* LeafLog.xcdatamodeld in Sources */,
 				F62B503529DB69A500C71595 /* SceneDelegate.swift in Sources */,
@@ -294,11 +302,12 @@
 				DEVELOPMENT_TEAM = X67TLHFY58;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LeafLog/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,9 +315,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonathantipton.LeafLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -322,11 +334,12 @@
 				DEVELOPMENT_TEAM = X67TLHFY58;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LeafLog/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -334,9 +347,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonathantipton.LeafLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
