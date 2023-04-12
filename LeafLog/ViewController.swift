@@ -44,6 +44,7 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
             }))
 
             newPlantController.navigationItem.rightBarButtonItem = cancel
+            newPlantController.navigationItem.rightBarButtonItem?.tintColor = UIColor.init(named: "titleColor")
             newPlantController.navigationController?.additionalSafeAreaInsets = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
             present(nav, animated: true)
         }
