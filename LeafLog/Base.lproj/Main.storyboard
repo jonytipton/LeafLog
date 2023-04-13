@@ -228,55 +228,73 @@
             <objects>
                 <viewController id="8Fx-Pz-2bp" customClass="CameraViewController" customModule="LeafLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oHl-E6-aJB">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="470"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="258" verticalHuggingPriority="252" verticalCompressionResistancePriority="1000" text="Center plant in view and tap" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E6m-8U-sUP">
-                                <rect key="frame" x="90.333333333333329" y="459.66666666666669" width="212.33333333333337" height="20.333333333333314"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="251" verticalCompressionResistancePriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vP8-gY-hAF">
-                                <rect key="frame" x="16" y="70" width="361" height="361"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tBk-wM-RNL">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="470"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6T-G0-rIJ">
+                                        <rect key="frame" x="102.33333333333333" y="0.0" width="188.33333333333337" height="41.666666666666664"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Snap A Pic">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <font key="NSFont" size="36" name="ArialRoundedMTBold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <color key="highlightedColor" systemColor="labelColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" translatesAutoresizingMaskIntoConstraints="NO" id="vP8-gY-hAF">
+                                        <rect key="frame" x="63.666666666666657" y="113" width="265.66666666666674" height="265.33333333333331"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="vP8-gY-hAF" secondAttribute="height" multiplier="1:1" id="wKj-rC-KiM"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="258" verticalHuggingPriority="252" verticalCompressionResistancePriority="1000" text="Center plant in view and tap" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E6m-8U-sUP">
+                                        <rect key="frame" x="90.333333333333329" y="449.66666666666669" width="212.33333333333337" height="20.333333333333314"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xm7-Fz-TnU">
+                                        <rect key="frame" x="46.666666666666657" y="474" width="300" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Jgs-lf-VEI"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="KCe-rW-027"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Continue" cornerStyle="large">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="vP8-gY-hAF" secondAttribute="height" multiplier="1:1" id="fhC-dK-k9Q"/>
+                                    <constraint firstItem="vP8-gY-hAF" firstAttribute="width" secondItem="E6m-8U-sUP" secondAttribute="width" multiplier="5:4" id="4kG-0u-9YF"/>
                                 </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6T-G0-rIJ">
-                                <rect key="frame" x="102.33333333333333" y="0.0" width="188.33333333333337" height="41.666666666666664"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Snap A Pic">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <font key="NSFont" size="36" name="ArialRoundedMTBold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <color key="highlightedColor" systemColor="labelColor"/>
-                            </label>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5mx-PB-IVd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="E6m-8U-sUP" firstAttribute="top" secondItem="vP8-gY-hAF" secondAttribute="bottom" constant="28.666666666666686" id="DXn-Pv-HBp"/>
-                            <constraint firstItem="r6T-G0-rIJ" firstAttribute="centerX" secondItem="5mx-PB-IVd" secondAttribute="centerX" id="S5r-H8-nLz"/>
-                            <constraint firstItem="r6T-G0-rIJ" firstAttribute="top" secondItem="5mx-PB-IVd" secondAttribute="top" id="XZT-Jt-n4j"/>
-                            <constraint firstItem="vP8-gY-hAF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="r6T-G0-rIJ" secondAttribute="bottom" constant="8" symbolic="YES" id="g6P-o2-6IY"/>
-                            <constraint firstItem="E6m-8U-sUP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vP8-gY-hAF" secondAttribute="bottom" constant="8" symbolic="YES" id="h51-JS-DNN"/>
-                            <constraint firstItem="vP8-gY-hAF" firstAttribute="top" secondItem="r6T-G0-rIJ" secondAttribute="bottom" constant="28.333333333333336" id="mtW-B5-UTQ"/>
-                            <constraint firstItem="5mx-PB-IVd" firstAttribute="bottom" secondItem="E6m-8U-sUP" secondAttribute="bottom" id="vXl-vc-gGb"/>
-                            <constraint firstItem="vP8-gY-hAF" firstAttribute="centerX" secondItem="5mx-PB-IVd" secondAttribute="centerX" id="wug-xm-9od"/>
-                            <constraint firstItem="E6m-8U-sUP" firstAttribute="centerX" secondItem="5mx-PB-IVd" secondAttribute="centerX" id="zfW-H0-cSe"/>
+                            <constraint firstItem="tBk-wM-RNL" firstAttribute="top" secondItem="5mx-PB-IVd" secondAttribute="top" id="AMp-4S-CSD"/>
+                            <constraint firstItem="tBk-wM-RNL" firstAttribute="leading" secondItem="oHl-E6-aJB" secondAttribute="leading" id="jk8-3s-U04"/>
+                            <constraint firstItem="5mx-PB-IVd" firstAttribute="trailing" secondItem="tBk-wM-RNL" secondAttribute="trailing" id="nug-KQ-Dp7"/>
+                            <constraint firstItem="5mx-PB-IVd" firstAttribute="bottom" secondItem="tBk-wM-RNL" secondAttribute="bottom" id="we1-Cp-PsW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Nau-Gf-95X"/>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="393" height="490"/>
+                    <size key="freeformSize" width="393" height="480"/>
                     <connections>
+                        <outlet property="continueButton" destination="xm7-Fz-TnU" id="pba-zI-IZj"/>
                         <outlet property="imageView" destination="vP8-gY-hAF" id="NDI-Zi-0Tw"/>
+                        <outlet property="instructionLabel" destination="E6m-8U-sUP" id="u7N-hB-kdm"/>
+                        <outlet property="stackView" destination="tBk-wM-RNL" id="SiF-gL-WMX"/>
                         <outlet property="titleLabel" destination="r6T-G0-rIJ" id="8Ar-Vx-gsT"/>
                     </connections>
                 </viewController>

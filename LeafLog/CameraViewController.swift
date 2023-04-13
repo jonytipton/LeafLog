@@ -9,9 +9,12 @@ import UIKit
 
 class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet var stackView: UIStackView!
     @IBOutlet var titleLabel: UILabel!
-    
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var instructionLabel: UILabel!
+    @IBOutlet var continueButton: UIButton!
+    var firstTake = true
     
     override func viewDidLayoutSubviews() {
         // border becomes a diamond instead of a circle if done in viewDidLoad()
@@ -20,7 +23,6 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         imageView.layer.cornerRadius = imageView.frame.size.height / 2
         imageView.clipsToBounds = true
         imageView.isUserInteractionEnabled = true
-        imageView.contentMode = .bottomRight
     }
     
     override func viewDidLoad() {
@@ -32,21 +34,35 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
 #if targetEnvironment(simulator)
         print("In simulator! Test camera feature on a real device.")
 #else
+        createImagePicker()
+#endif
+    }
+    
+    @objc func createImagePicker() {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = .camera
-        picker.allowsEditing = false
         picker.showsCameraControls = false
         picker.cameraCaptureMode = .photo
-        addChild(picker)
         picker.view.clipsToBounds = true
         picker.navigationBar.isHidden = true
         picker.view.isUserInteractionEnabled = true
         picker.view.tag = 1
+        addChild(picker)
         picker.view.addSubview(createCameraOverlay(for: picker.view))   //addSubview() required for gesture recognizer to work, use cameraOverlayView option below if only adding UI
         //picker.cameraOverlayView? = createCameraOverlay(for: picker.view)
         imageView.addSubview(picker.view)
-#endif
+        
+        navigationItem.setRightBarButton(.none, animated: true)
+        UIView.transition(with: titleLabel, duration: 0.5, options: .transitionFlipFromBottom, animations: {
+            self.titleLabel.text = "Take A Pic"
+        })
+        UIView.transition(with: self.stackView, duration: 0.5, options: .transitionCrossDissolve, animations: { [unowned self] in
+            self.instructionLabel.alpha = 1
+            self.continueButton.alpha = 0
+            self.instructionLabel.isHidden = false
+            self.continueButton.isHidden = true
+        })
     }
     
     @objc func takePhoto(_ sender: UITapGestureRecognizer) {
@@ -55,21 +71,30 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         picker.takePicture()
         sender.view?.removeFromSuperview()
-        UIView.transition(with: titleLabel, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            self.titleLabel.text = "Great!"
+        UIView.transition(with: titleLabel, duration: 0.5, options: .transitionCrossDissolve, animations: { [unowned self] in
+            self.titleLabel.text = "Looks Good!"
         })
-        
+        UIView.transition(with: self.stackView, duration: 0.5, options: .transitionCrossDissolve, animations: { [unowned self] in
+            self.instructionLabel.alpha = 0
+            self.instructionLabel.isHidden = true
+            self.continueButton.isHidden = false
+            self.continueButton.alpha = 1
+        })
+        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(createImagePicker)), animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else { return }
         
-        let cropRect = CGRect(x: 0, y: (image.size.height / 2) - (image.size.width / 2), width: image.size.width, height: image.size.width)
-        
-        //image not initialized using a CIImage object
-        let imageRef = image.cgImage?.cropping(to: cropRect)
-        imageView.image = UIImage(cgImage: imageRef!)
+        //Align UIImage with camera preview
+        let cropRect = CGRect(x: 0, y: picker.view.frame.height + 250, width: image.size.height / 2 , height: image.size.height / 2)
+        let cgImage = image.cgImage!
+        let croppedCGImage = cgImage.cropping(to: cropRect)
+        let croppedImage = UIImage(
+            cgImage: croppedCGImage!, scale: image.imageRendererFormat.scale, orientation: image.imageOrientation)
+        picker.view.removeFromSuperview()
         picker.removeFromParent()
+        imageView.image = croppedImage
     }
     
     func createCameraOverlay(for view: UIView) -> UIView {
