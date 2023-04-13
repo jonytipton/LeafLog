@@ -226,7 +226,7 @@
         <!--Camera View Controller-->
         <scene sceneID="sLe-dv-qA6">
             <objects>
-                <viewController id="8Fx-Pz-2bp" customClass="CameraViewController" customModule="LeafLog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cameraVC" id="8Fx-Pz-2bp" customClass="CameraViewController" customModule="LeafLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oHl-E6-aJB">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="470"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

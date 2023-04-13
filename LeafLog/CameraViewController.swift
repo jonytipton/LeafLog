@@ -5,6 +5,7 @@
 //  Created by Jonathan Tipton on 4/10/23.
 //
 
+import AVFoundation
 import UIKit
 
 class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -14,7 +15,10 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var instructionLabel: UILabel!
     @IBOutlet var continueButton: UIButton!
-    var firstTake = true
+    
+    var libraryImage: UIImage?
+    var usingLibrary = false
+    weak var newPlantController: NewPlantController!
     
     override func viewDidLayoutSubviews() {
         // border becomes a diamond instead of a circle if done in viewDidLoad()
@@ -29,12 +33,19 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewDidLoad()
         
         titleLabel.textColor = UIColor.init(named: "titleColor")
-
+        navigationController?.navigationBar.tintColor = UIColor.init(named: "appGreen")
         print(imageView.layer.bounds.width)
 #if targetEnvironment(simulator)
         print("In simulator! Test camera feature on a real device.")
 #else
-        createImagePicker()
+        if usingLibrary {
+            instructionLabel.isHidden = true
+            titleLabel.text = "Looks Good!"
+            imageView.image = libraryImage
+            continueButton.isHidden = false
+        } else {
+            createImagePicker()
+        }
 #endif
     }
     
@@ -47,12 +58,28 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         picker.view.clipsToBounds = true
         picker.navigationBar.isHidden = true
         picker.view.isUserInteractionEnabled = true
+        picker.cameraFlashMode = .off
         picker.view.tag = 1
         addChild(picker)
-        picker.view.addSubview(createCameraOverlay(for: picker.view))   //addSubview() required for gesture recognizer to work, use cameraOverlayView option below if only adding UI
-        //picker.cameraOverlayView? = createCameraOverlay(for: picker.view)
+        
         imageView.addSubview(picker.view)
         
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        if cameraAuthorizationStatus == .authorized {
+            picker.view.addSubview(createCameraOverlay(for: picker.view))   //addSubview() required for gesture recognizer to work, use cameraOverlayView option below if only adding UI
+            //picker.cameraOverlayView? = createCameraOverlay(for: picker.view)
+        } else {
+            let ac = UIAlertController(title: "Uh Oh!", message: "Camera access required to take new photos. Grant access in Settings -> LeafLog", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Settings", style: .default) { _ in
+                if let url = URL(string:UIApplication.openSettingsURLString) {
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    }
+                }
+            })
+            ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
+            present(ac, animated: true)
+        }
         navigationItem.setRightBarButton(.none, animated: true)
         UIView.transition(with: titleLabel, duration: 0.5, options: .transitionFlipFromBottom, animations: {
             self.titleLabel.text = "Take A Pic"

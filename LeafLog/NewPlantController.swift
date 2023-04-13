@@ -6,10 +6,34 @@
 //
 
 import AVFoundation
+import Photos
+import PhotosUI
 import UIKit
 
 class NewPlantController: UIViewController,
-                          UINavigationControllerDelegate, UINavigationBarDelegate, UIImagePickerControllerDelegate, UITabBarControllerDelegate {
+                          UINavigationControllerDelegate, UINavigationBarDelegate, PHPickerViewControllerDelegate, UITabBarControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        
+        let itemProvider = results.first?.itemProvider
+        
+        if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                DispatchQueue.main.async {
+                    guard let self = self, let image = image as? UIImage else { return }
+                    
+                    if let vc = self.storyboard?.instantiateViewController(withIdentifier: "cameraVC") as? CameraViewController {
+                        vc.newPlantController = self
+                        vc.usingLibrary = true
+                        vc.libraryImage = image
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    
+                }
+            }
+        }
+    }
+    
     
     weak var gardenDelegate: ViewController!
     
@@ -23,56 +47,13 @@ class NewPlantController: UIViewController,
         newPlantTitle.textColor = UIColor.init(named: "titleColor")
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        //save image
-        //guard let image = info[.editedImage] as? UIImage else { return }
-       
-    }
-    
-//    @IBAction func openCamera(_ sender: Any) {
-//        let picker = UIImagePickerController()
-//        picker.delegate = self
-//        picker.sourceType = .camera
-//        picker.allowsEditing = false
-//        picker.showsCameraControls = false
-//        picker.cameraCaptureMode = .photo
-//        picker.view.frame = self.view.bounds
-//        addChild(picker)
-//        picker.view.layer.frame = CGRect(x: view.layer.frame.width, y: view.center.y / 2, width: picker.view.frame.size.width / 1.5, height: view.frame.size.width / 1.5)
-//        picker.view.layer.borderColor = UIColor.init(named: "appGreen")?.cgColor
-//        picker.view.layer.borderWidth = 5
-//        picker.view.frame = CGRectInset(picker.view.frame, -picker.view.layer.borderWidth, -picker.view.layer.borderWidth)
-//        picker.view.clipsToBounds = true
-//        picker.view.layer.cornerRadius = picker.view.layer.bounds.width / 2
-//        self.view.addSubview(picker.view)
-//        takePhotoView.layer.position = CGPoint(x: picker.view.layer.position.x, y: view.safeAreaInsets.top)
-//
-//        UIView.transition(with: picker.view, duration: 0.5, animations: {
-//            self.stackView.transform = CGAffineTransform(translationX: -self.view.frame.size.width, y: 0)
-//            picker.view.center = self.view.center
-//            self.view.addSubview(self.takePhotoView)
-//            self.takePhotoView.layer.position.x = picker.view.layer.position.x
-//        })
-//        let overlayView = UIView(frame: picker.view.frame)
-//        picker.view.addSubview(overlayView)
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(takePhoto(_:)))
-//        overlayView.addGestureRecognizer(tap)
-//        picker.cameraOverlayView = overlayView
-//    }
-    
-    
-    @IBAction func openLibrary(_ sender: Any) {
-        let picker = UIImagePickerController()
-        picker.sourceType = .camera
+    @IBAction @objc func openLibrary(_ sender: Any) {
+        var config = PHPickerConfiguration()
+        config.filter = .images
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self
         present(picker, animated: true)
     }
-//
-
-//
     
     // MARK: - Navigation
 
@@ -80,6 +61,8 @@ class NewPlantController: UIViewController,
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        let destination = segue.destination as! CameraViewController
+        destination.newPlantController = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
