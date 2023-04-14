@@ -24,7 +24,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         // border becomes a diamond instead of a circle if done in viewDidLoad()
         imageView.layer.borderColor = UIColor.init(named: "appGreen")?.cgColor
         imageView.layer.borderWidth = 5
-        imageView.layer.cornerRadius = imageView.frame.size.height / 2
+        imageView.layer.cornerRadius = imageView.bounds.size.height / 2
         imageView.clipsToBounds = true
         imageView.isUserInteractionEnabled = true
     }
@@ -36,7 +36,14 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         navigationController?.navigationBar.tintColor = UIColor.init(named: "appGreen")
         print(imageView.layer.bounds.width)
 #if targetEnvironment(simulator)
-        print("In simulator! Test camera feature on a real device.")
+        if usingLibrary {
+            instructionLabel.isHidden = true
+            titleLabel.text = "Looks Good!"
+            imageView.image = libraryImage
+            continueButton.isHidden = false
+        } else {
+            print("In simulator! Test camera feature on a real device.")
+        }
 #else
         if usingLibrary {
             instructionLabel.isHidden = true
@@ -93,11 +100,18 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @objc func takePhoto(_ sender: UITapGestureRecognizer) {
-        guard let picker = imageView.viewWithTag(1)?.next as? UIImagePickerController else { self.titleLabel.text = "ERROR!"
+        let generator = UINotificationFeedbackGenerator()
+
+        guard let picker = imageView.viewWithTag(1)?.next as? UIImagePickerController else {
+            generator.notificationOccurred(.error)
+            self.titleLabel.text = "ERROR!"
             return
         }
+        
         picker.takePicture()
+        generator.notificationOccurred(.success)
         sender.view?.removeFromSuperview()
+        
         UIView.transition(with: titleLabel, duration: 0.5, options: .transitionCrossDissolve, animations: { [unowned self] in
             self.titleLabel.text = "Looks Good!"
         })
@@ -107,6 +121,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.continueButton.isHidden = false
             self.continueButton.alpha = 1
         })
+        
         navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(createImagePicker)), animated: true)
     }
     
@@ -131,5 +146,10 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         let tap = UITapGestureRecognizer(target: self, action: #selector(takePhoto(_:)))
         overlayView.addGestureRecognizer(tap)
         return overlayView
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! SaveNewPlantViewController
+        destination.plantImage = imageView.image
     }
 }

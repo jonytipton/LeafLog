@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UICollectionViewController, UINavigationControllerDelegate  {
 
+    var plants = [[String: UIImage]()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,12 +19,14 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return plants.count
     }
+    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "plantCell", for: indexPath) as? PlantCell else { fatalError("Unable to dequeue resuable cell with identifer: 'plantCell'")}
-        cell.titleLabel.text = "A"
+        cell.titleLabel.text = plants[indexPath.row].first?.key
+        cell.imageView.image = plants[indexPath.row].first?.value
         return cell
     }
     
