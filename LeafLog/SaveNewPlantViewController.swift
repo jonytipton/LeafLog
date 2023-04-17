@@ -28,10 +28,10 @@ class SaveNewPlantViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func adjustForKeyboard(notification: Notification) {
-        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        //guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
 
-        let keyboardScreenEndFrame = keyboardValue.cgRectValue
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+//        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+//        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
 
 //        if notification.name == UIResponder.keyboardWillHideNotification {
 //            additionalSafeAreaInsets.bottom = .zero
@@ -49,10 +49,10 @@ class SaveNewPlantViewController: UIViewController, UITextFieldDelegate {
                     dismiss(animated: true)
                 }
                 else {
-                    print(nav.topViewController)
+                    //print(nav.topViewController)
                 }
             } else {
-                print(tabBar.selectedViewController)
+                //print(tabBar.selectedViewController)
             }
         } else {
             let ac = UIAlertController(title: "Missing Name", message: "Type nickname for plant in textfield before adding", preferredStyle: .alert)

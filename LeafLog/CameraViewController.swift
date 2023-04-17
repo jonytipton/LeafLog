@@ -111,7 +111,27 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         picker.takePicture()
         generator.notificationOccurred(.success)
         sender.view?.removeFromSuperview()
+        UIView.animate(withDuration: 0.25, animations: {
+            self.imageView.layer.borderWidth = 150
+        })
+        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(createImagePicker)), animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else { return }
         
+        //Align UIImage with camera preview
+        let cropRect = CGRect(x: 0, y: picker.view.frame.height * 1.25, width: image.size.height / 2 , height: image.size.height / 2)
+        picker.view.removeFromSuperview()
+        picker.removeFromParent()
+        UIView.animate(withDuration: 0.25, animations: {
+            self.imageView.layer.borderWidth = 5
+        })
+        let cgImage = image.cgImage!
+        let croppedCGImage = cgImage.cropping(to: cropRect)
+        let croppedImage = UIImage(
+            cgImage: croppedCGImage!, scale: image.imageRendererFormat.scale, orientation: image.imageOrientation)
+        imageView.image = croppedImage
         UIView.transition(with: titleLabel, duration: 0.5, options: .transitionCrossDissolve, animations: { [unowned self] in
             self.titleLabel.text = "Looks Good!"
         })
@@ -121,22 +141,6 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.continueButton.isHidden = false
             self.continueButton.alpha = 1
         })
-        
-        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(createImagePicker)), animated: true)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.originalImage] as? UIImage else { return }
-        
-        //Align UIImage with camera preview
-        let cropRect = CGRect(x: 0, y: picker.view.frame.height + 250, width: image.size.height / 2 , height: image.size.height / 2)
-        let cgImage = image.cgImage!
-        let croppedCGImage = cgImage.cropping(to: cropRect)
-        let croppedImage = UIImage(
-            cgImage: croppedCGImage!, scale: image.imageRendererFormat.scale, orientation: image.imageOrientation)
-        picker.view.removeFromSuperview()
-        picker.removeFromParent()
-        imageView.image = croppedImage
     }
     
     func createCameraOverlay(for view: UIView) -> UIView {
