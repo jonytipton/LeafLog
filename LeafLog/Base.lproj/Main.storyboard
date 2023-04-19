@@ -277,7 +277,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="tBk-wM-RNL" firstAttribute="top" secondItem="5mx-PB-IVd" secondAttribute="top" id="AMp-4S-CSD"/>
-                            <constraint firstItem="tBk-wM-RNL" firstAttribute="leading" secondItem="oHl-E6-aJB" secondAttribute="leading" id="jk8-3s-U04"/>
+                            <constraint firstItem="tBk-wM-RNL" firstAttribute="leading" secondItem="5mx-PB-IVd" secondAttribute="leading" id="jk8-3s-U04"/>
                             <constraint firstItem="5mx-PB-IVd" firstAttribute="trailing" secondItem="tBk-wM-RNL" secondAttribute="trailing" id="nug-KQ-Dp7"/>
                             <constraint firstItem="5mx-PB-IVd" firstAttribute="bottom" secondItem="tBk-wM-RNL" secondAttribute="bottom" id="we1-Cp-PsW"/>
                         </constraints>
@@ -372,14 +372,10 @@
                         <viewLayoutGuide key="safeArea" id="LdU-AN-F0l"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="WkY-AT-EXu" firstAttribute="leading" secondItem="AnB-pM-CoJ" secondAttribute="leading" id="CrF-L9-Dew"/>
                             <constraint firstItem="WkY-AT-EXu" firstAttribute="trailing" secondItem="LdU-AN-F0l" secondAttribute="trailing" id="SL0-uZ-1Tm"/>
-                            <constraint firstItem="WkY-AT-EXu" firstAttribute="top" secondItem="LdU-AN-F0l" secondAttribute="top" id="TzO-O1-rVg"/>
                             <constraint firstItem="WkY-AT-EXu" firstAttribute="leading" secondItem="LdU-AN-F0l" secondAttribute="leading" id="YYP-SN-JRy"/>
                             <constraint firstItem="WkY-AT-EXu" firstAttribute="bottom" secondItem="LdU-AN-F0l" secondAttribute="bottom" id="ZZe-bv-HXi"/>
-                            <constraint firstItem="LdU-AN-F0l" firstAttribute="bottom" secondItem="WkY-AT-EXu" secondAttribute="bottom" id="c8k-lm-Ywd"/>
                             <constraint firstItem="WkY-AT-EXu" firstAttribute="top" secondItem="LdU-AN-F0l" secondAttribute="top" id="fAG-ie-2KM"/>
-                            <constraint firstItem="LdU-AN-F0l" firstAttribute="trailing" secondItem="WkY-AT-EXu" secondAttribute="trailing" id="l7v-H3-vId"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mj6-mX-xGn"/>
@@ -393,7 +389,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaE-fi-2Ar" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4450" y="-608"/>
+            <point key="canvasLocation" x="4329" y="-608"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.2315481901" green="0.52954876419999997" blue="0.30584296579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

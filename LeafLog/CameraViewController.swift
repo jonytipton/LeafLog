@@ -19,12 +19,17 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     var libraryImage: UIImage?
     var usingLibrary = false
     weak var newPlantController: NewPlantController!
+
     
-    override func viewDidLayoutSubviews() {
+    override func viewWillLayoutSubviews() {
         // border becomes a diamond instead of a circle if done in viewDidLoad()
+        imageView.layoutIfNeeded()
+        imageView.layer.cornerRadius = imageView.frame.width / 2
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         imageView.layer.borderColor = UIColor.init(named: "appGreen")?.cgColor
         imageView.layer.borderWidth = 5
-        imageView.layer.cornerRadius = imageView.bounds.size.height / 2
         imageView.clipsToBounds = true
         imageView.isUserInteractionEnabled = true
     }
@@ -34,7 +39,6 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         titleLabel.textColor = UIColor.init(named: "titleColor")
         navigationController?.navigationBar.tintColor = UIColor.init(named: "appGreen")
-        print(imageView.layer.bounds.width)
 #if targetEnvironment(simulator)
         if usingLibrary {
             instructionLabel.isHidden = true
