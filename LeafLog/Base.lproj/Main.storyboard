@@ -66,37 +66,34 @@
         <!--View Controller-->
         <scene sceneID="3Jr-Rk-jZH">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Sm-Vi-5bB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <collectionViewController storyboardIdentifier="myGardenVC" id="iaC-yv-MIl" customClass="ViewController" customModule="LeafLog" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="dx7-NZ-D65">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dqF-3k-aka">
-                            <size key="itemSize" width="150" height="200"/>
-                            <size key="estimatedItemSize" width="150" height="200"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="dqF-3k-aka">
+                            <size key="itemSize" width="150" height="150"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="plantCell" id="Gcb-7x-U8J" customClass="PlantCell" customModule="LeafLog" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                                <rect key="frame" x="20" y="20" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="y2b-Wc-EsD">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Tg0-wA-JDI">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <rect key="frame" x="15" y="0.0" width="120" height="120"/>
                                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="150" id="Sqi-wz-thz"/>
-                                                <constraint firstAttribute="height" constant="150" id="xjl-02-NVw"/>
+                                                <constraint firstAttribute="width" secondItem="Tg0-wA-JDI" secondAttribute="height" multiplier="1:1" id="Ee3-OL-wi2"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69V-dK-4kH">
-                                            <rect key="frame" x="54.333333333333329" y="158" width="41.333333333333329" height="21"/>
+                                            <rect key="frame" x="54.333333333333329" y="128" width="41.333333333333329" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -104,11 +101,15 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Tg0-wA-JDI" firstAttribute="centerX" secondItem="69V-dK-4kH" secondAttribute="centerX" id="ISi-eq-0fB"/>
-                                        <constraint firstItem="Tg0-wA-JDI" firstAttribute="leading" secondItem="y2b-Wc-EsD" secondAttribute="leading" id="S8F-QE-Ahp"/>
                                         <constraint firstItem="69V-dK-4kH" firstAttribute="top" secondItem="Tg0-wA-JDI" secondAttribute="bottom" constant="8" symbolic="YES" id="Zdq-cj-2pZ"/>
+                                        <constraint firstAttribute="bottom" secondItem="69V-dK-4kH" secondAttribute="bottom" id="cx3-Qb-FAX"/>
                                         <constraint firstItem="Tg0-wA-JDI" firstAttribute="top" secondItem="y2b-Wc-EsD" secondAttribute="top" id="mUg-WU-sBD"/>
+                                        <constraint firstItem="Tg0-wA-JDI" firstAttribute="leading" secondItem="y2b-Wc-EsD" secondAttribute="leading" constant="15" id="x0h-pn-uBi"/>
+                                        <constraint firstAttribute="trailing" secondItem="Tg0-wA-JDI" secondAttribute="trailing" constant="15" id="xi1-Aw-Eks"/>
+                                        <constraint firstItem="Tg0-wA-JDI" firstAttribute="centerX" secondItem="y2b-Wc-EsD" secondAttribute="centerX" id="zP1-EO-6Am"/>
                                     </constraints>
                                 </collectionViewCellContentView>
+                                <size key="customSize" width="150" height="150"/>
                                 <connections>
                                     <outlet property="imageView" destination="Tg0-wA-JDI" id="Wat-wN-XsU"/>
                                     <outlet property="titleLabel" destination="69V-dK-4kH" id="azP-6v-nU4"/>
@@ -122,8 +123,9 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="q5v-Oz-IvW"/>
                 </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Sm-Vi-5bB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1616.030534351145" y="-419.0140845070423"/>
+            <point key="canvasLocation" x="1615.8139534883721" y="-419.09871244635195"/>
         </scene>
         <!--New Plant Controller-->
         <scene sceneID="dTr-fX-5TH">

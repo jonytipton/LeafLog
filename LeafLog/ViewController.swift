@@ -7,15 +7,21 @@
 
 import UIKit
 
-class ViewController: UICollectionViewController, UINavigationControllerDelegate  {
+class ViewController: UICollectionViewController, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout  {
 
     var plants = [[String: UIImage]]()
+    let margin = 10.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "My Garden"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPlant))
+        
+        guard let collectionView = collectionView, let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        flowLayout.minimumInteritemSpacing = margin
+        flowLayout.minimumLineSpacing = margin
+        flowLayout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -29,6 +35,8 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "plantCell", for: indexPath) as? PlantCell else { fatalError("Unable to dequeue resuable cell with identifer: 'plantCell'")}
         cell.titleLabel.text = plants[indexPath.row].first?.key
         cell.imageView.image = plants[indexPath.row].first?.value
+        
+        cell.layoutIfNeeded() //recalculate frame width for imageView corner radius
         return cell
     }
     
@@ -59,6 +67,33 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         guard let cell = cell as? PlantCell else { return }
         cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2.0
     }
+    
 
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//
+//        let totalCellWidth = 80 * 2
+//        let totalSpacingWidth = 10 * (collectionView.numberOfItems(inSection: 0) - 1)
+//
+//                let leftInset = (collectionView.layer.frame.size.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+//                let rightInset = leftInset
+//
+//        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+//
+//    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellsPerRowCount = 3
+        
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        
+        let totalSpace = flowLayout.sectionInset.left + flowLayout.sectionInset.right + (flowLayout.minimumInteritemSpacing * CGFloat(cellsPerRowCount - 1))
+        
+        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(cellsPerRowCount))
+        return CGSize(width: size, height: size)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.collectionView.reloadData()
+    }
 }
 
