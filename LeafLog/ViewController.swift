@@ -9,8 +9,11 @@ import UIKit
 
 class ViewController: UICollectionViewController, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout  {
 
-    var plants = [[String: UIImage]]()
+    var plants = [Plant]()
     let margin = 10.0
+    
+    //Reference to managed object context
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,21 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         flowLayout.minimumInteritemSpacing = margin
         flowLayout.minimumLineSpacing = margin
         flowLayout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
+        
+        fetchPlants()
+    }
+    
+    func fetchPlants() {
+        //Fetch data from Core Data to display in the collectionview
+        do {
+            self.plants = try context.fetch(Plant.fetchRequest())
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        } catch {
+            //error
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -33,8 +51,8 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "plantCell", for: indexPath) as? PlantCell else { fatalError("Unable to dequeue resuable cell with identifer: 'plantCell'")}
-        cell.titleLabel.text = plants[indexPath.row].first?.key
-        cell.imageView.image = plants[indexPath.row].first?.value
+        cell.titleLabel.text = plants[indexPath.row].nickname
+        cell.imageView.image = (plants[indexPath.row].userPhotos as? [UIImage])?.first
         
         cell.layoutIfNeeded() //recalculate frame width for imageView corner radius
         return cell

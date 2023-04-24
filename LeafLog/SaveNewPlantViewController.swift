@@ -10,6 +10,7 @@ import UIKit
 class SaveNewPlantViewController: UIViewController, UITextFieldDelegate {
     
     var plantImage: UIImage!
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var addPlantButton: UIButton!
@@ -40,12 +41,20 @@ class SaveNewPlantViewController: UIViewController, UITextFieldDelegate {
 //        }
     }
     @IBAction func addTapped(_ sender: Any) {
-        //TODO: add plant to core data and collection view
         if let tabBar = self.presentingViewController as? UITabBarController {
             if let nav = tabBar.selectedViewController as? UINavigationController {
                 if let gardenController = nav.topViewController as? ViewController {
-                    gardenController.plants.append([textField.text!: plantImage])
-                    gardenController.collectionView.reloadData()
+                    let text = textField.text!
+                    
+                    let newPlant = Plant(context: self.context)
+                    newPlant.nickname = text
+                    
+                    do {
+                        try self.context.save()
+                    } catch {
+                        print("ERROR SAVING NEW PLANT")
+                    }
+                    gardenController.fetchPlants()
                     dismiss(animated: true)
                 }
                 else {

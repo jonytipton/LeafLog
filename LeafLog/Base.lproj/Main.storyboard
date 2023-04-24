@@ -25,23 +25,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fav-xG-thh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2249.6183206106871" y="179.57746478873241"/>
+            <point key="canvasLocation" x="723" y="746"/>
         </scene>
         <!--Watering Schedule-->
         <scene sceneID="4f9-M8-rvb">
             <objects>
-                <viewController title="Watering Schedule" id="qDI-l2-Wd4" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uaV-db-Vv3">
+                <viewController title="Watering Schedule" id="qDI-l2-Wd4" customClass="ScheduleTableViewController" customModule="LeafLog" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="1u4-V1-JR3">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="cKr-N4-AGM"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="scheduleCell" id="qV1-Jw-cGV">
+                                <rect key="frame" x="0.0" y="50" width="430" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qV1-Jw-cGV" id="Mvy-V8-yu8">
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
                     <tabBarItem key="tabBarItem" title="Watering Schedule" image="pipe.and.drop" catalog="system" selectedImage="pipe.and.drop.fill" id="FMh-Nv-xyB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="08l-6Y-9jb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-152" y="-1030"/>
+            <point key="canvasLocation" x="691" y="-1078"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Mtl-nO-476">
@@ -61,7 +70,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S13-sF-0cQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-979" y="-418"/>
+            <point key="canvasLocation" x="-220" y="-418"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="3Jr-Rk-jZH">
@@ -126,6 +135,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Sm-Vi-5bB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1615.8139534883721" y="-419.09871244635195"/>
+        </scene>
+        <!--Plant Detail View Controller-->
+        <scene sceneID="6Pv-DJ-y44">
+            <objects>
+                <viewController storyboardIdentifier="plantDetailViewController" id="kqs-fJ-xtu" customClass="PlantDetailViewController" customModule="LeafLog" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U8y-Hv-AIG">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="mYZ-Xy-Zz9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CmF-U2-ZhU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2453" y="-406"/>
         </scene>
         <!--New Plant Controller-->
         <scene sceneID="dTr-fX-5TH">
@@ -212,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a4G-oh-Uw4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2703" y="-604"/>
+            <point key="canvasLocation" x="1589" y="98"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="sLe-dv-qA6">
@@ -295,7 +319,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hh9-hw-eks" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3554.9618320610684" y="-604.22535211267609"/>
+            <point key="canvasLocation" x="2355" y="98"/>
         </scene>
         <!--My Garden-->
         <scene sceneID="yBm-ZY-ufB">
@@ -389,7 +413,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaE-fi-2Ar" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4329" y="-608"/>
+            <point key="canvasLocation" x="3098" y="98"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.2315481901" green="0.52954876419999997" blue="0.30584296579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

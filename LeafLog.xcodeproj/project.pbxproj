@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		F61A885229E4A8AA00E23C5B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A885129E4A8AA00E23C5B /* CameraViewController.swift */; };
 		F61A885429E8BA8800E23C5B /* SaveNewPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A885329E8BA8800E23C5B /* SaveNewPlantViewController.swift */; };
+		F61A885629F33A2400E23C5B /* ScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A885529F33A2400E23C5B /* ScheduleTableViewController.swift */; };
+		F61A885829F33B4000E23C5B /* PlantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A885729F33B4000E23C5B /* PlantDetailViewController.swift */; };
 		F62B503329DB69A500C71595 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B503229DB69A500C71595 /* AppDelegate.swift */; };
 		F62B503529DB69A500C71595 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B503429DB69A500C71595 /* SceneDelegate.swift */; };
 		F62B503729DB69A500C71595 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B503629DB69A500C71595 /* ViewController.swift */; };
@@ -18,11 +20,16 @@
 		F62B504229DB69A600C71595 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62B504029DB69A600C71595 /* LaunchScreen.storyboard */; };
 		F62B504C29DB7C5500C71595 /* PlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B504B29DB7C5500C71595 /* PlantCell.swift */; };
 		F62B504E29DB889B00C71595 /* NewPlantController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B504D29DB889B00C71595 /* NewPlantController.swift */; };
+		F62B5F3329F5E82B00E34D1C /* jsonTest in Resources */ = {isa = PBXBuildFile; fileRef = F62B5F3229F5E82B00E34D1C /* jsonTest */; };
+		F6A61EB029F5FC55006BF6FB /* Plant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A61EAE29F5FC55006BF6FB /* Plant+CoreDataClass.swift */; };
+		F6A61EB129F5FC55006BF6FB /* Plant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A61EAF29F5FC55006BF6FB /* Plant+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F61A885129E4A8AA00E23C5B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		F61A885329E8BA8800E23C5B /* SaveNewPlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveNewPlantViewController.swift; sourceTree = "<group>"; };
+		F61A885529F33A2400E23C5B /* ScheduleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewController.swift; sourceTree = "<group>"; };
+		F61A885729F33B4000E23C5B /* PlantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailViewController.swift; sourceTree = "<group>"; };
 		F62B502F29DB69A500C71595 /* LeafLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeafLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F62B503229DB69A500C71595 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F62B503429DB69A500C71595 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +40,9 @@
 		F62B504129DB69A600C71595 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F62B504B29DB7C5500C71595 /* PlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantCell.swift; sourceTree = "<group>"; };
 		F62B504D29DB889B00C71595 /* NewPlantController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlantController.swift; sourceTree = "<group>"; };
+		F62B5F3229F5E82B00E34D1C /* jsonTest */ = {isa = PBXFileReference; lastKnownFileType = text; path = jsonTest; sourceTree = "<group>"; };
+		F6A61EAE29F5FC55006BF6FB /* Plant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plant+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F6A61EAF29F5FC55006BF6FB /* Plant+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plant+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,17 +77,30 @@
 			children = (
 				F61A885329E8BA8800E23C5B /* SaveNewPlantViewController.swift */,
 				F61A885129E4A8AA00E23C5B /* CameraViewController.swift */,
+				F62B5F3229F5E82B00E34D1C /* jsonTest */,
 				F62B504D29DB889B00C71595 /* NewPlantController.swift */,
 				F62B503229DB69A500C71595 /* AppDelegate.swift */,
 				F62B503429DB69A500C71595 /* SceneDelegate.swift */,
 				F62B503629DB69A500C71595 /* ViewController.swift */,
-				F62B503829DB69A500C71595 /* Main.storyboard */,
+				F61A885729F33B4000E23C5B /* PlantDetailViewController.swift */,
+				F61A885529F33A2400E23C5B /* ScheduleTableViewController.swift */,
 				F62B504B29DB7C5500C71595 /* PlantCell.swift */,
 				F62B503E29DB69A600C71595 /* Assets.xcassets */,
+				F62B503829DB69A500C71595 /* Main.storyboard */,
 				F62B504029DB69A600C71595 /* LaunchScreen.storyboard */,
-				F62B503B29DB69A500C71595 /* LeafLog.xcdatamodeld */,
+				F6F3A9B929F5EF0C00B8401E /* Model */,
 			);
 			path = LeafLog;
+			sourceTree = "<group>";
+		};
+		F6F3A9B929F5EF0C00B8401E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F62B503B29DB69A500C71595 /* LeafLog.xcdatamodeld */,
+				F6A61EAE29F5FC55006BF6FB /* Plant+CoreDataClass.swift */,
+				F6A61EAF29F5FC55006BF6FB /* Plant+CoreDataProperties.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +163,7 @@
 			files = (
 				F62B504229DB69A600C71595 /* LaunchScreen.storyboard in Resources */,
 				F62B503F29DB69A600C71595 /* Assets.xcassets in Resources */,
+				F62B5F3329F5E82B00E34D1C /* jsonTest in Resources */,
 				F62B503A29DB69A500C71595 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,10 +175,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F61A885629F33A2400E23C5B /* ScheduleTableViewController.swift in Sources */,
 				F62B504E29DB889B00C71595 /* NewPlantController.swift in Sources */,
 				F62B503729DB69A500C71595 /* ViewController.swift in Sources */,
+				F6A61EB129F5FC55006BF6FB /* Plant+CoreDataProperties.swift in Sources */,
+				F61A885829F33B4000E23C5B /* PlantDetailViewController.swift in Sources */,
 				F62B504C29DB7C5500C71595 /* PlantCell.swift in Sources */,
 				F62B503329DB69A500C71595 /* AppDelegate.swift in Sources */,
+				F6A61EB029F5FC55006BF6FB /* Plant+CoreDataClass.swift in Sources */,
 				F61A885429E8BA8800E23C5B /* SaveNewPlantViewController.swift in Sources */,
 				F61A885229E4A8AA00E23C5B /* CameraViewController.swift in Sources */,
 				F62B503D29DB69A500C71595 /* LeafLog.xcdatamodeld in Sources */,
