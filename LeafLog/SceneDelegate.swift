@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let tabBarController = self.window?.rootViewController as? UITabBarController {
             tabBarController.selectedIndex = 1 //Set My Garden tab as default
         }
+        window?.tintColor = UIColor.init(named: "appGreen")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

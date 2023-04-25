@@ -137,19 +137,50 @@
             <point key="canvasLocation" x="1615.8139534883721" y="-419.09871244635195"/>
         </scene>
         <!--Plant Detail View Controller-->
-        <scene sceneID="6Pv-DJ-y44">
+        <scene sceneID="V0z-4o-Wte">
             <objects>
-                <viewController storyboardIdentifier="plantDetailViewController" id="kqs-fJ-xtu" customClass="PlantDetailViewController" customModule="LeafLog" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="U8y-Hv-AIG">
+                <tableViewController storyboardIdentifier="plantDetailViewController" id="lju-7f-6Bb" customClass="PlantDetailViewController" customModule="LeafLog" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="nn4-Pm-gTK">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="mYZ-Xy-Zz9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CmF-U2-ZhU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailImageCell" rowHeight="150" id="Bx0-Ng-Duf" customClass="DetailImageCell" customModule="LeafLog" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="430" height="150"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bx0-Ng-Duf" id="qVg-wG-t3q">
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="150"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1kr-5h-we0">
+                                            <rect key="frame" x="155" y="20" width="120" height="110"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="1kr-5h-we0" secondAttribute="height" multiplier="1:1" id="BER-n7-llD"/>
+                                                <constraint firstAttribute="width" constant="120" id="I8P-56-LWy"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="1kr-5h-we0" secondAttribute="bottom" constant="20" symbolic="YES" id="1bm-7O-S7T"/>
+                                        <constraint firstItem="1kr-5h-we0" firstAttribute="centerX" secondItem="qVg-wG-t3q" secondAttribute="centerX" id="bOE-1T-YuP"/>
+                                        <constraint firstItem="1kr-5h-we0" firstAttribute="centerY" secondItem="qVg-wG-t3q" secondAttribute="centerY" id="m67-DW-ceO"/>
+                                        <constraint firstItem="1kr-5h-we0" firstAttribute="top" secondItem="qVg-wG-t3q" secondAttribute="top" constant="20" symbolic="YES" id="sNa-YG-kJG"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="detailImageView" destination="1kr-5h-we0" id="ad4-cX-AoO"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="lju-7f-6Bb" id="MYq-4c-kjW"/>
+                            <outlet property="delegate" destination="lju-7f-6Bb" id="vxe-EA-BdJ"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kf2-eq-GSO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2453" y="-406"/>
+            <point key="canvasLocation" x="2483.7209302325582" y="-457.08154506437774"/>
         </scene>
         <!--New Plant Controller-->
         <scene sceneID="dTr-fX-5TH">

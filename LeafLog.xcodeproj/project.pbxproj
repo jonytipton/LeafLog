@@ -23,6 +23,9 @@
 		F62B5F3329F5E82B00E34D1C /* jsonTest in Resources */ = {isa = PBXBuildFile; fileRef = F62B5F3229F5E82B00E34D1C /* jsonTest */; };
 		F65FAA9929F7176A00D356BA /* Plant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65FAA9729F7176A00D356BA /* Plant+CoreDataClass.swift */; };
 		F65FAA9A29F7176A00D356BA /* Plant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65FAA9829F7176A00D356BA /* Plant+CoreDataProperties.swift */; };
+		F6DA1B7829F888A3000713C7 /* DetailImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DA1B7729F888A3000713C7 /* DetailImageCell.swift */; };
+		F6DA1B7A29F888B5000713C7 /* DetailTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DA1B7929F888B5000713C7 /* DetailTextCell.swift */; };
+		F6DA1B7C29F888C3000713C7 /* DetailSlideshowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DA1B7B29F888C3000713C7 /* DetailSlideshowCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,9 @@
 		F62B5F3229F5E82B00E34D1C /* jsonTest */ = {isa = PBXFileReference; lastKnownFileType = text; path = jsonTest; sourceTree = "<group>"; };
 		F65FAA9729F7176A00D356BA /* Plant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plant+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F65FAA9829F7176A00D356BA /* Plant+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plant+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F6DA1B7729F888A3000713C7 /* DetailImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageCell.swift; sourceTree = "<group>"; };
+		F6DA1B7929F888B5000713C7 /* DetailTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTextCell.swift; sourceTree = "<group>"; };
+		F6DA1B7B29F888C3000713C7 /* DetailSlideshowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSlideshowCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,7 @@
 		F62B502629DB69A500C71595 = {
 			isa = PBXGroup;
 			children = (
+				F62B503B29DB69A500C71595 /* LeafLog.xcdatamodeld */,
 				F65FAA9729F7176A00D356BA /* Plant+CoreDataClass.swift */,
 				F65FAA9829F7176A00D356BA /* Plant+CoreDataProperties.swift */,
 				F62B503129DB69A500C71595 /* LeafLog */,
@@ -77,30 +84,40 @@
 		F62B503129DB69A500C71595 /* LeafLog */ = {
 			isa = PBXGroup;
 			children = (
-				F61A885329E8BA8800E23C5B /* SaveNewPlantViewController.swift */,
-				F61A885129E4A8AA00E23C5B /* CameraViewController.swift */,
+				F6DA1B7529F86D39000713C7 /* MyGarden */,
+				F61A885529F33A2400E23C5B /* ScheduleTableViewController.swift */,
 				F62B5F3229F5E82B00E34D1C /* jsonTest */,
-				F62B504D29DB889B00C71595 /* NewPlantController.swift */,
 				F62B503229DB69A500C71595 /* AppDelegate.swift */,
 				F62B503429DB69A500C71595 /* SceneDelegate.swift */,
-				F62B503629DB69A500C71595 /* ViewController.swift */,
-				F61A885729F33B4000E23C5B /* PlantDetailViewController.swift */,
-				F61A885529F33A2400E23C5B /* ScheduleTableViewController.swift */,
-				F62B504B29DB7C5500C71595 /* PlantCell.swift */,
 				F62B503E29DB69A600C71595 /* Assets.xcassets */,
-				F62B503829DB69A500C71595 /* Main.storyboard */,
-				F62B504029DB69A600C71595 /* LaunchScreen.storyboard */,
-				F6F3A9B929F5EF0C00B8401E /* Model */,
+				F6DA1B7629F86ECD000713C7 /* Storyboards */,
 			);
 			path = LeafLog;
 			sourceTree = "<group>";
 		};
-		F6F3A9B929F5EF0C00B8401E /* Model */ = {
+		F6DA1B7529F86D39000713C7 /* MyGarden */ = {
 			isa = PBXGroup;
 			children = (
-				F62B503B29DB69A500C71595 /* LeafLog.xcdatamodeld */,
+				F61A885329E8BA8800E23C5B /* SaveNewPlantViewController.swift */,
+				F61A885129E4A8AA00E23C5B /* CameraViewController.swift */,
+				F62B504D29DB889B00C71595 /* NewPlantController.swift */,
+				F62B503629DB69A500C71595 /* ViewController.swift */,
+				F61A885729F33B4000E23C5B /* PlantDetailViewController.swift */,
+				F62B504B29DB7C5500C71595 /* PlantCell.swift */,
+				F6DA1B7B29F888C3000713C7 /* DetailSlideshowCell.swift */,
+				F6DA1B7929F888B5000713C7 /* DetailTextCell.swift */,
+				F6DA1B7729F888A3000713C7 /* DetailImageCell.swift */,
 			);
-			path = Model;
+			path = MyGarden;
+			sourceTree = "<group>";
+		};
+		F6DA1B7629F86ECD000713C7 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				F62B503829DB69A500C71595 /* Main.storyboard */,
+				F62B504029DB69A600C71595 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,11 +199,14 @@
 				F61A885829F33B4000E23C5B /* PlantDetailViewController.swift in Sources */,
 				F62B504C29DB7C5500C71595 /* PlantCell.swift in Sources */,
 				F62B503329DB69A500C71595 /* AppDelegate.swift in Sources */,
+				F6DA1B7A29F888B5000713C7 /* DetailTextCell.swift in Sources */,
 				F65FAA9929F7176A00D356BA /* Plant+CoreDataClass.swift in Sources */,
 				F61A885429E8BA8800E23C5B /* SaveNewPlantViewController.swift in Sources */,
 				F61A885229E4A8AA00E23C5B /* CameraViewController.swift in Sources */,
+				F6DA1B7829F888A3000713C7 /* DetailImageCell.swift in Sources */,
 				F62B503D29DB69A500C71595 /* LeafLog.xcdatamodeld in Sources */,
 				F62B503529DB69A500C71595 /* SceneDelegate.swift in Sources */,
+				F6DA1B7C29F888C3000713C7 /* DetailSlideshowCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +356,7 @@
 				DEVELOPMENT_TEAM = X67TLHFY58;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LeafLog/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LeafLog;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to take new pictures of plants!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -368,6 +389,7 @@
 				DEVELOPMENT_TEAM = X67TLHFY58;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LeafLog/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LeafLog;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to take new pictures of plants!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

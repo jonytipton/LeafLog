@@ -20,6 +20,7 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         
         title = "My Garden"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPlant))
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         guard let collectionView = collectionView, let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         flowLayout.minimumInteritemSpacing = margin
@@ -102,8 +103,15 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         return CGSize(width: size, height: size)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "plantDetailViewController") as? PlantDetailViewController else { return }
+        detailVC.plant = plants[indexPath.item]
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.collectionView.reloadData()
     }
+    
 }
 
