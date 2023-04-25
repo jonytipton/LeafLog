@@ -6,6 +6,7 @@
         <attribute name="data" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
         <attribute name="dateAdded" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="defaultPhotos" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="displayPhoto" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="nickname" optional="YES" attributeType="String"/>
         <attribute name="scientificName" optional="YES" attributeType="String"/>
         <attribute name="sunlight" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>

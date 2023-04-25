@@ -75,22 +75,21 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         imageView.addSubview(picker.view)
         
-        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
-        if cameraAuthorizationStatus == .authorized {
-            picker.view.addSubview(createCameraOverlay(for: picker.view))   //addSubview() required for gesture recognizer to work, use cameraOverlayView option below if only adding UI
-            //picker.cameraOverlayView? = createCameraOverlay(for: picker.view)
+        if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
+            picker.view.addSubview(self.createCameraOverlay(for: picker.view))
         } else {
-            let ac = UIAlertController(title: "Uh Oh!", message: "Camera access required to take new photos. Grant access in Settings -> LeafLog", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Settings", style: .default) { _ in
-                if let url = URL(string:UIApplication.openSettingsURLString) {
-                    if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
+            AVCaptureDevice.requestAccess(for: .video) { [unowned self] _ in
+                let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+                if cameraAuthorizationStatus == .denied {
+                    self.showDeniedAccessAlert()
+                } else {
+                    picker.view.addSubview(self.createCameraOverlay(for: picker.view))
+                    //addSubview() required for gesture recognizer to work, use cameraOverlayView option below if only adding UI
+                    //picker.cameraOverlayView? = createCameraOverlay(for: picker.view)
                 }
-            })
-            ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
-            present(ac, animated: true)
+            }
         }
+
         navigationItem.setRightBarButton(.none, animated: true)
         UIView.transition(with: titleLabel, duration: 0.5, options: .transitionFlipFromBottom, animations: {
             self.titleLabel.text = "Take A Pic"
@@ -101,6 +100,23 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.instructionLabel.isHidden = false
             self.continueButton.isHidden = true
         })
+    }
+    
+    func showDeniedAccessAlert() {
+        DispatchQueue.main.async {
+            let ac = UIAlertController(title: "Uh Oh!", message: "Camera access required to take new photos. Grant access in Settings -> LeafLog", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Settings", style: .default) { _ in
+                if let url = URL(string:UIApplication.openSettingsURLString) {
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    }
+                }
+            })
+            ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel) { _ in
+                self.navigationController?.popToRootViewController(animated: true)
+            })
+            self.present(ac, animated: true)
+        }
     }
     
     @objc func takePhoto(_ sender: UITapGestureRecognizer) {
@@ -118,7 +134,6 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         UIView.animate(withDuration: 0.25, animations: {
             self.imageView.layer.borderWidth = 150
         })
-        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(createImagePicker)), animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -138,8 +153,13 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         imageView.image = croppedImage
         UIView.transition(with: titleLabel, duration: 0.5, options: .transitionCrossDissolve, animations: { [unowned self] in
             self.titleLabel.text = "Looks Good!"
-        })
-        UIView.transition(with: self.stackView, duration: 0.5, options: .transitionCrossDissolve, animations: { [unowned self] in
+        }) { _ in
+            DispatchQueue.main.async {
+                //Adjust timing for displaying redo button
+                self.navigationItem.setRightBarButton(.init(barButtonSystemItem: .refresh, target: self, action: #selector(self.createImagePicker)), animated: true)
+            }
+        }
+        UIView.transition(with: self.stackView, duration: 0.4, options: .transitionCrossDissolve, animations: { [unowned self] in
             self.instructionLabel.alpha = 0
             self.instructionLabel.isHidden = true
             self.continueButton.isHidden = false

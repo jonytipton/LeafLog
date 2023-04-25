@@ -48,7 +48,11 @@ class SaveNewPlantViewController: UIViewController, UITextFieldDelegate {
                     
                     let newPlant = Plant(context: self.context)
                     newPlant.nickname = text
-                    
+                    if let photoData = plantImage.jpegData(compressionQuality: 1.0) {
+                        newPlant.displayPhoto = photoData
+                    } else {
+                        print("error convering image to data")
+                    }
                     do {
                         try self.context.save()
                     } catch {

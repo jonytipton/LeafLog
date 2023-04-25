@@ -2,7 +2,7 @@
 //  Plant+CoreDataProperties.swift
 //  LeafLog
 //
-//  Created by Jonathan Tipton on 4/23/23.
+//  Created by Jonathan Tipton on 4/24/23.
 //
 //
 
@@ -21,11 +21,12 @@ extension Plant {
     @NSManaged public var data: NSObject?
     @NSManaged public var dateAdded: Date?
     @NSManaged public var defaultPhotos: NSObject?
+    @NSManaged public var nickname: String?
     @NSManaged public var scientificName: String?
     @NSManaged public var sunlight: NSObject?
     @NSManaged public var userPhotos: [NSData]?
     @NSManaged public var watering: String?
-    @NSManaged public var nickname: String?
+    @NSManaged public var displayPhoto: Data?
 
 }
 

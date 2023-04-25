@@ -21,8 +21,8 @@
 		F62B504C29DB7C5500C71595 /* PlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B504B29DB7C5500C71595 /* PlantCell.swift */; };
 		F62B504E29DB889B00C71595 /* NewPlantController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B504D29DB889B00C71595 /* NewPlantController.swift */; };
 		F62B5F3329F5E82B00E34D1C /* jsonTest in Resources */ = {isa = PBXBuildFile; fileRef = F62B5F3229F5E82B00E34D1C /* jsonTest */; };
-		F6A61EB029F5FC55006BF6FB /* Plant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A61EAE29F5FC55006BF6FB /* Plant+CoreDataClass.swift */; };
-		F6A61EB129F5FC55006BF6FB /* Plant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A61EAF29F5FC55006BF6FB /* Plant+CoreDataProperties.swift */; };
+		F65FAA9929F7176A00D356BA /* Plant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65FAA9729F7176A00D356BA /* Plant+CoreDataClass.swift */; };
+		F65FAA9A29F7176A00D356BA /* Plant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65FAA9829F7176A00D356BA /* Plant+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,8 +41,8 @@
 		F62B504B29DB7C5500C71595 /* PlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantCell.swift; sourceTree = "<group>"; };
 		F62B504D29DB889B00C71595 /* NewPlantController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlantController.swift; sourceTree = "<group>"; };
 		F62B5F3229F5E82B00E34D1C /* jsonTest */ = {isa = PBXFileReference; lastKnownFileType = text; path = jsonTest; sourceTree = "<group>"; };
-		F6A61EAE29F5FC55006BF6FB /* Plant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plant+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F6A61EAF29F5FC55006BF6FB /* Plant+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plant+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F65FAA9729F7176A00D356BA /* Plant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plant+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F65FAA9829F7176A00D356BA /* Plant+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plant+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +59,8 @@
 		F62B502629DB69A500C71595 = {
 			isa = PBXGroup;
 			children = (
+				F65FAA9729F7176A00D356BA /* Plant+CoreDataClass.swift */,
+				F65FAA9829F7176A00D356BA /* Plant+CoreDataProperties.swift */,
 				F62B503129DB69A500C71595 /* LeafLog */,
 				F62B503029DB69A500C71595 /* Products */,
 			);
@@ -97,8 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				F62B503B29DB69A500C71595 /* LeafLog.xcdatamodeld */,
-				F6A61EAE29F5FC55006BF6FB /* Plant+CoreDataClass.swift */,
-				F6A61EAF29F5FC55006BF6FB /* Plant+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,11 +178,11 @@
 				F61A885629F33A2400E23C5B /* ScheduleTableViewController.swift in Sources */,
 				F62B504E29DB889B00C71595 /* NewPlantController.swift in Sources */,
 				F62B503729DB69A500C71595 /* ViewController.swift in Sources */,
-				F6A61EB129F5FC55006BF6FB /* Plant+CoreDataProperties.swift in Sources */,
+				F65FAA9A29F7176A00D356BA /* Plant+CoreDataProperties.swift in Sources */,
 				F61A885829F33B4000E23C5B /* PlantDetailViewController.swift in Sources */,
 				F62B504C29DB7C5500C71595 /* PlantCell.swift in Sources */,
 				F62B503329DB69A500C71595 /* AppDelegate.swift in Sources */,
-				F6A61EB029F5FC55006BF6FB /* Plant+CoreDataClass.swift in Sources */,
+				F65FAA9929F7176A00D356BA /* Plant+CoreDataClass.swift in Sources */,
 				F61A885429E8BA8800E23C5B /* SaveNewPlantViewController.swift in Sources */,
 				F61A885229E4A8AA00E23C5B /* CameraViewController.swift in Sources */,
 				F62B503D29DB69A500C71595 /* LeafLog.xcdatamodeld in Sources */,
