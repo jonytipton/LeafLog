@@ -104,13 +104,14 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func showDeniedAccessAlert() {
         DispatchQueue.main.async {
-            let ac = UIAlertController(title: "Uh Oh!", message: "Camera access required to take new photos. Grant access in Settings -> LeafLog", preferredStyle: .alert)
+            let ac = UIAlertController(title: "LeafLog would like to access the Camera", message: "The Camera is used for adding photos and plant identification.", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Settings", style: .default) { _ in
                 if let url = URL(string:UIApplication.openSettingsURLString) {
                     if UIApplication.shared.canOpenURL(url) {
                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
                 }
+                self.navigationController?.popToRootViewController(animated: true)
             })
             ac.addAction(UIAlertAction(title: "Dismiss", style: .cancel) { _ in
                 self.navigationController?.popToRootViewController(animated: true)
