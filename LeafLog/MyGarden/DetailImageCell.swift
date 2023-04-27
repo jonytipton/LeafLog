@@ -10,6 +10,7 @@ import UIKit
 class DetailImageCell: UITableViewCell {
 
     @IBOutlet var detailImageView: UIImageView!
+    @IBOutlet var plantLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib() 

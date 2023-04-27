@@ -7,17 +7,28 @@
 
 import UIKit
 
-class DetailSlideshowCell: UITableViewCell {
+class DetailSlideshowCell: UITableViewCell, UIScrollViewDelegate {
 
+    @IBOutlet var imageScrollView: UIScrollView!
+    
+    @IBOutlet var scrollContentView: UIView!
+    
+    var images: [UIImage] = []
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        scrollContentView.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func displayImages() {
+        for (index,image) in images.enumerated() {
+            let view = UIImageView(image: image)
+            view.contentMode = .scaleAspectFill
+            view.frame = CGRect(x: imageScrollView.frame.width * CGFloat(index), y: 0, width: imageScrollView.frame.width, height: imageScrollView.frame.height)
+            scrollContentView.addSubview(view)
+            scrollContentView.widthAnchor.constraint(equalToConstant: imageScrollView.frame.width * CGFloat(images.count)).isActive = true
+            scrollContentView.heightAnchor.constraint(equalToConstant: view.bounds.height).isActive = true
+        }
     }
-
 }

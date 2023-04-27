@@ -9,6 +9,7 @@ import UIKit
 
 class DetailTextCell: UITableViewCell {
 
+    @IBOutlet var detailLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code 
