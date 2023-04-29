@@ -16,6 +16,8 @@ class DetailImageCell: UITableViewCell {
         super.awakeFromNib() 
         // Initialization code
         detailImageView.layer.cornerRadius = detailImageView.frame.width / 2
+        detailImageView.layer.borderColor = UIColor.init(named: "appGreen")?.cgColor
+        detailImageView.layer.borderWidth = 5
         detailImageView.clipsToBounds = true
         detailImageView.contentMode = .scaleAspectFill
     }
