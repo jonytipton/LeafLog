@@ -219,7 +219,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4k-7M-zut">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="326"/>
+                                            <rect key="frame" x="15" y="0.0" width="400" height="326"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yze-1D-Fde" userLabel="Scroll Content View">
                                                     <rect key="frame" x="0.0" y="0.0" width="1000" height="326"/>
@@ -243,8 +243,8 @@
                                     <constraints>
                                         <constraint firstItem="J4k-7M-zut" firstAttribute="top" secondItem="KGR-iV-ClV" secondAttribute="top" id="7zi-X0-ItR"/>
                                         <constraint firstAttribute="bottom" secondItem="J4k-7M-zut" secondAttribute="bottom" id="NU6-YT-km7"/>
-                                        <constraint firstAttribute="trailing" secondItem="J4k-7M-zut" secondAttribute="trailing" id="uAs-U7-bAM"/>
-                                        <constraint firstItem="J4k-7M-zut" firstAttribute="leading" secondItem="KGR-iV-ClV" secondAttribute="leading" id="v44-9N-2Ea"/>
+                                        <constraint firstAttribute="trailing" secondItem="J4k-7M-zut" secondAttribute="trailing" constant="15" id="uAs-U7-bAM"/>
+                                        <constraint firstItem="J4k-7M-zut" firstAttribute="leading" secondItem="KGR-iV-ClV" secondAttribute="leading" constant="15" id="v44-9N-2Ea"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
