@@ -10,10 +10,35 @@ import UIKit
 class PlantDetailViewController: UITableViewController {
     
     var plant: Plant!
+    var defaultHeaderHeight: CGFloat = 30
+    var needsLayout = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
+        tableView.contentInset = UIEdgeInsets(top: -defaultHeaderHeight, left: 0, bottom: 0, right: 0)
+
+        let editPlant = UIAction(title: "Edit Plant", image: UIImage(systemName: "leaf"), handler: editTapped)
+        let addPhoto = UIAction(title: "Add Photo", image: UIImage(systemName: "camera.viewfinder"), handler: addPhotoTapped)
+        let deletePlant = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive, handler: deletePlantTapped)
+        
+        let menu = UIMenu(title: "", options: .displayInline, children: [editPlant, addPhoto, deletePlant])
+        let menuButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: nil)
+        menuButton.menu = menu
+        navigationItem.rightBarButtonItems = [menuButton]
+    }
+
+    func editTapped(alert: UIAction) {
+        print("Edit Tapped")
+    }
+    
+    func deletePlantTapped(alert: UIAction) {
+        print("Delete Plant Tapped")
+    }
+
+    
+    func addPhotoTapped(alert: UIAction) {
+        print("Add Photo Tapped")
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -60,23 +85,31 @@ class PlantDetailViewController: UITableViewController {
         
         switch section {
         case 0:
-            headerHeight = CGFloat.leastNonzeroMagnitude
+            headerHeight = 1
         default:
-            headerHeight = 30
+            headerHeight = defaultHeaderHeight
         }
         return headerHeight
     }
 
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+        if section == 0 {
             title = plant.nickname?.uppercased()
         }
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if section == 0 {
             title = ""
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.section == 9 {
             let cell = cell as! DetailSlideshowCell
             cell.displayImages()
@@ -126,7 +159,6 @@ class PlantDetailViewController: UITableViewController {
         config.text = title
         config.textProperties.alignment = .center
         headerView.contentConfiguration = config
-        
         return headerView
     }
     

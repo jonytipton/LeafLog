@@ -19,6 +19,8 @@ class DetailSlideshowCell: UITableViewCell, UIScrollViewDelegate {
     var padding: CGFloat = 5
     var cornerRadius: CGFloat = 25
     var currentPage: Int = 0
+    // Temp workaround to limit reloading of images. Will need to refactor this and PlantDetailViewController during performance testing to properly resolve issue.
+    var awaitingDisplay = true
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,6 +35,8 @@ class DetailSlideshowCell: UITableViewCell, UIScrollViewDelegate {
     }
     
     func displayImages() {
+        guard awaitingDisplay else { return }
+        
         for (index,image) in images.enumerated() {
             let view = UIImageView(image: image)
             view.contentMode = .scaleAspectFill
@@ -45,6 +49,7 @@ class DetailSlideshowCell: UITableViewCell, UIScrollViewDelegate {
             imageScrollView.clipsToBounds = false
         }
         configurePageControl()
+        awaitingDisplay = false
     }
     
     func configurePageControl() {
