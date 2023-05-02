@@ -62,7 +62,7 @@ class PlantDetailViewController: UITableViewController {
         case 0:
             headerHeight = CGFloat.leastNonzeroMagnitude
         default:
-            headerHeight = 21
+            headerHeight = 30
         }
         return headerHeight
     }

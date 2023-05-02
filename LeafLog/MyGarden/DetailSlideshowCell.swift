@@ -13,19 +13,23 @@ class DetailSlideshowCell: UITableViewCell, UIScrollViewDelegate {
     
     @IBOutlet var scrollContentView: UIView!
     
+    @IBOutlet var pageControl: UIPageControl!
+    
     var images: [UIImage] = []
     var padding: CGFloat = 5
     var cornerRadius: CGFloat = 25
-    var currentPage = 0
+    var currentPage: Int = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
         imageScrollView.delegate = self
+        imageScrollView.showsHorizontalScrollIndicator = false
         scrollContentView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        pageControl.currentPage = currentPage
     }
     
     func displayImages() {
@@ -39,7 +43,12 @@ class DetailSlideshowCell: UITableViewCell, UIScrollViewDelegate {
             scrollContentView.widthAnchor.constraint(equalToConstant: imageScrollView.frame.width * CGFloat(images.count)).isActive = true
             imageScrollView.isPagingEnabled = true
             imageScrollView.clipsToBounds = false
-            
         }
+        configurePageControl()
+    }
+    
+    func configurePageControl() {
+        pageControl.numberOfPages = images.count
+        pageControl.currentPage = 0
     }
 }

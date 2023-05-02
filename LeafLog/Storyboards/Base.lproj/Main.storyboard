@@ -239,16 +239,22 @@
                                             <viewLayoutGuide key="contentLayoutGuide" id="jyT-yV-dve"/>
                                             <viewLayoutGuide key="frameLayoutGuide" id="QDy-7H-tNJ"/>
                                         </scrollView>
+                                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="cF3-mC-fzA">
+                                            <rect key="frame" x="157.33333333333334" y="290" width="115.66666666666666" height="26"/>
+                                        </pageControl>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="J4k-7M-zut" firstAttribute="top" secondItem="KGR-iV-ClV" secondAttribute="top" id="7zi-X0-ItR"/>
                                         <constraint firstAttribute="bottom" secondItem="J4k-7M-zut" secondAttribute="bottom" id="NU6-YT-km7"/>
+                                        <constraint firstItem="cF3-mC-fzA" firstAttribute="centerX" secondItem="KGR-iV-ClV" secondAttribute="centerX" id="dTc-aJ-rs4"/>
                                         <constraint firstAttribute="trailing" secondItem="J4k-7M-zut" secondAttribute="trailing" constant="15" id="uAs-U7-bAM"/>
                                         <constraint firstItem="J4k-7M-zut" firstAttribute="leading" secondItem="KGR-iV-ClV" secondAttribute="leading" constant="15" id="v44-9N-2Ea"/>
+                                        <constraint firstItem="J4k-7M-zut" firstAttribute="bottom" secondItem="cF3-mC-fzA" secondAttribute="bottom" constant="10" id="w7a-1Y-kbf"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="imageScrollView" destination="J4k-7M-zut" id="B4c-0E-kRj"/>
+                                    <outlet property="pageControl" destination="cF3-mC-fzA" id="HAo-pb-cYm"/>
                                     <outlet property="scrollContentView" destination="Yze-1D-Fde" id="1uX-4y-gsq"/>
                                 </connections>
                             </tableViewCell>
