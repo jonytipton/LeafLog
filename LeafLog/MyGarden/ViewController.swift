@@ -8,9 +8,16 @@
 import UIKit
 
 class ViewController: UICollectionViewController, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout  {
-
+    
+    enum PlantFilters: String {
+        case ascending = "Ascending"
+        case descending = "Descending"
+        case favorites = "Favorites"
+    }
+    
     var plants = [Plant]()
     let margin = 10.0
+    var selectedFilter = PlantFilters.ascending
     
     //Reference to managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -18,26 +25,82 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchPlants()
+        
+        if let filter = UserDefaults.standard.object(forKey: "PlantFilter") as? String {
+            selectedFilter = PlantFilters(rawValue: filter) ?? PlantFilters.ascending
+        }
+        
         title = "My Garden"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPlant))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPlant))
+        let filterAscending = UIAction(title: "Ascending", image: UIImage(systemName: "arrow.up"), handler: filterAscending)
+        let filterDescending = UIAction(title: "Descending", image: UIImage(systemName: "arrow.down"), handler: filterDescending)
+        let filterFavorites = UIAction(title: "Favorites", image: UIImage(systemName: "star"), handler: filterFavorites)
+        
+        switch selectedFilter {
+        case .descending:
+            filterDescending.state = .on
+        case .favorites:
+            filterFavorites.state = .on
+        default:
+            filterAscending.state = .on
+        }
+        
+        let menu = UIMenu(title: "Sort By", options: .singleSelection, children: [filterAscending, filterDescending, filterFavorites])
+        let menuButton = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal.decrease.circle"), style: .plain, target: self, action: nil)
+        menuButton.menu = menu
+        navigationItem.rightBarButtonItems = [menuButton, addButton]
         navigationController?.navigationBar.prefersLargeTitles = true
         
         guard let collectionView = collectionView, let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         flowLayout.minimumInteritemSpacing = margin
         flowLayout.minimumLineSpacing = margin
         flowLayout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
+    }
+    
+    func filterAscending(alert: UIAction) {
+        UserDefaults.standard.set(PlantFilters.ascending.rawValue, forKey: "PlantFilter")
+        reloadPlants()
+    }
+    
+    func filterDescending(alert: UIAction) {
+        UserDefaults.standard.set(PlantFilters.descending.rawValue, forKey: "PlantFilter")
+        reloadPlants()
+    }
+    
+    func filterFavorites(alert: UIAction) {
+        UserDefaults.standard.set(PlantFilters.favorites.rawValue, forKey: "PlantFilter")
+        reloadPlants()
+    }
+    
+    func filterPlants() {
+        guard let filter = UserDefaults.standard.object(forKey: "PlantFilter") as? String else { return }
+        selectedFilter = PlantFilters(rawValue: filter) ?? selectedFilter
         
-        fetchPlants()
+        switch selectedFilter {
+        case .descending:
+            plants = self.plants.sorted(by: {
+                guard let nameA = $0.nickname, let nameB = $1.nickname else { return false }
+                return nameA > nameB
+            })
+            break
+        case .favorites:
+            //TODO: filter by favorites tag
+            break
+        default:
+            //Ascending
+            plants = self.plants.sorted(by: {
+                guard let nameA = $0.nickname, let nameB = $1.nickname else { return false }
+                return nameA < nameB
+            })
+        }
     }
     
     func fetchPlants() {
         //Fetch data from Core Data to display in the collectionview
         do {
             self.plants = try context.fetch(Plant.fetchRequest())
-            print(plants.count)
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
+            reloadPlants()
         } catch {
             //TODO: Display alert controller w/ error
             //error
@@ -73,19 +136,30 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
                 sheet.detents = [.medium()]
                 sheet.preferredCornerRadius = 50
             }
-
+            
             let cancel = UIBarButtonItem(__barButtonSystemItem: .close, primaryAction: .init(handler: { [weak self] _ in
                 //AC confirmation prompt
                 self?.dismiss(animated: true)
             }))
-
+            
             newPlantController.navigationItem.rightBarButtonItem = cancel
             newPlantController.navigationItem.rightBarButtonItem?.tintColor = UIColor.init(named: "titleColor")
             newPlantController.navigationController?.additionalSafeAreaInsets = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
             present(nav, animated: true)
         }
     }
-
+    
+    func deletePlant(_ plant: Plant) {
+        //delete
+        context.delete(plant)
+        fetchPlants()
+        do {
+            try context.save()
+        } catch {
+            //TODO: error handling
+        }
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let cell = cell as? PlantCell else { return }
         cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2.0
@@ -105,12 +179,20 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "plantDetailViewController") as? PlantDetailViewController else { return }
+        detailVC.garden = self
         detailVC.plant = plants[indexPath.item]
         navigationController?.pushViewController(detailVC, animated: true)
     }
     
+    func reloadPlants() {
+        filterPlants()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
-        self.collectionView.reloadData()
+        reloadPlants()
     }
     
 }

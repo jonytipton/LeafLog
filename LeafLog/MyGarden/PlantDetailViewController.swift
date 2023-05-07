@@ -5,6 +5,7 @@
 //  Created by Jonathan Tipton on 4/21/23.
 //
 
+import CoreData
 import UIKit
 
 class PlantDetailViewController: UITableViewController {
@@ -12,6 +13,7 @@ class PlantDetailViewController: UITableViewController {
     var plant: Plant!
     var defaultHeaderHeight: CGFloat = 30
     var needsLayout = true
+    weak var garden: ViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +35,13 @@ class PlantDetailViewController: UITableViewController {
     }
     
     func deletePlantTapped(alert: UIAction) {
-        print("Delete Plant Tapped")
+        let ac = UIAlertController(title: "Delete \(plant.nickname ?? "Plant")?", message: "This cannot be undone!", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
+            self.garden.deletePlant(self.plant)
+            self.navigationController?.popViewController(animated: true)
+        })
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(ac, animated: true)
     }
 
     
