@@ -1,17 +1,17 @@
 //
-//  Plant+CoreDataProperties.swift
+//  Plant.swift
 //  LeafLog
 //
-//  Created by Jonathan Tipton on 4/25/23.
-//
+//  Created by Jonathan Tipton on 5/9/23.
 //
 
-import Foundation
 import CoreData
+import Foundation
+import UIKit
 
-
-extension Plant {
-
+@objc(Plant)
+class Plant: NSManagedObject {
+    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Plant> {
         return NSFetchRequest<Plant>(entityName: "Plant")
     }
@@ -24,11 +24,7 @@ extension Plant {
     @NSManaged public var nickname: String?
     @NSManaged public var scientificName: String?
     @NSManaged public var sunlight: [String]?
-    @NSManaged public var userPhotos: [NSData]?
+    @NSManaged public var userPhotos: [UIImage]
     @NSManaged public var watering: String?
-
-}
-
-extension Plant : Identifiable {
 
 }

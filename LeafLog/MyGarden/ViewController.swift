@@ -20,7 +20,7 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
     var selectedFilter = PlantFilters.ascending
     
     //Reference to managed object context
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let context = CoreDataManager.shared.persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()

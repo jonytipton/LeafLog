@@ -10,7 +10,7 @@ import UIKit
 class SaveNewPlantViewController: UIViewController, UITextFieldDelegate {
     
     var plantImage: UIImage!
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let context = CoreDataManager.shared.persistentContainer.viewContext
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var addPlantButton: UIButton!
@@ -50,6 +50,8 @@ class SaveNewPlantViewController: UIViewController, UITextFieldDelegate {
                     newPlant.nickname = text
                     if let photoData = plantImage.jpegData(compressionQuality: 1.0) {
                         newPlant.displayPhoto = photoData
+                        newPlant.userPhotos.append(plantImage)
+                        print(newPlant.userPhotos)
                     } else {
                         print("error convering image to data")
                     }

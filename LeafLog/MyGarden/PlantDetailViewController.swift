@@ -70,16 +70,20 @@ class PlantDetailViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailTextCell") as! DetailTextCell
             cell.detailLabel.text = plant.nickname
             return cell
+        case 8:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "detailSlideshowCell") as! DetailSlideshowCell
+            //TODO: replace with JSON data
+            if cell.images.isEmpty {
+                
+                cell.images = plant.userPhotos
+            }
+            return cell
         case 9:
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailSlideshowCell") as! DetailSlideshowCell
             //TODO: replace with JSON data
             if cell.images.isEmpty {
-                var arr = [UIImage]()
-                for _ in 1...5 {
-                    let image = UIImage(data: plant.displayPhoto!)
-                    arr.append(image!)
-                }
-                cell.images = arr
+                
+                cell.images = plant.userPhotos
             }
             return cell
         default:
@@ -118,7 +122,7 @@ class PlantDetailViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.section == 9 {
+        if indexPath.section == 8 || indexPath.section == 9{
             let cell = cell as! DetailSlideshowCell
             cell.displayImages()
         }

@@ -9,7 +9,7 @@
         <attribute name="nickname" optional="YES" attributeType="String"/>
         <attribute name="scientificName" optional="YES" attributeType="String"/>
         <attribute name="sunlight" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
-        <attribute name="userPhotos" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[NSData]"/>
+        <attribute name="userPhotos" attributeType="Transformable" valueTransformerName="UIImageTransformer" customClassName="[UIImage]"/>
         <attribute name="watering" optional="YES" attributeType="String"/>
     </entity>
 </model>
