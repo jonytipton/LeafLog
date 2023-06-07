@@ -102,8 +102,7 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
             self.plants = try context.fetch(Plant.fetchRequest())
             reloadPlants()
         } catch {
-            //TODO: Display alert controller w/ error
-            //error
+            print("error in fetchPlants(): \(error)")
         }
     }
     
@@ -157,6 +156,15 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
             try context.save()
         } catch {
             //TODO: error handling
+        }
+    }
+    
+    func saveChanges() {
+        do {
+            try context.save()
+            fetchPlants()
+        } catch {
+            print("Error saving changes: \(error)")
         }
     }
     

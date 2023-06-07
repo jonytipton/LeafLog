@@ -8,7 +8,7 @@
 import CoreData
 import UIKit
 
-class PlantDetailViewController: UITableViewController {
+class PlantDetailViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var plant: Plant!
     var defaultHeaderHeight: CGFloat = 30
@@ -46,7 +46,23 @@ class PlantDetailViewController: UITableViewController {
 
     
     func addPhotoTapped(alert: UIAction) {
-        print("Add Photo Tapped")
+        let picker = UIImagePickerController()
+        picker.sourceType = .camera
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else {
+            print("error getting image from picker")
+            dismiss(animated: true); return }
+        plant.userPhotos.append(image)
+        garden.saveChanges()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        dismiss(animated: true)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -81,10 +97,7 @@ class PlantDetailViewController: UITableViewController {
         case 9:
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailSlideshowCell") as! DetailSlideshowCell
             //TODO: replace with JSON data
-            if cell.images.isEmpty {
-                
-                cell.images = plant.userPhotos
-            }
+            
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailTextCell") as! DetailTextCell
