@@ -19,7 +19,7 @@ class Plant: NSManagedObject {
     @NSManaged public var commonName: String?
     @NSManaged public var cycle: String?
     @NSManaged public var dateAdded: Date?
-    @NSManaged public var defaultPhotos: [NSData]?
+    @NSManaged public var defaultPhoto: Data?
     @NSManaged public var displayPhoto: Data?
     @NSManaged public var nickname: String?
     @NSManaged public var scientificName: String?

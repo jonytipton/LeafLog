@@ -55,5 +55,8 @@ class DetailSlideshowCell: UITableViewCell, UIScrollViewDelegate {
     func configurePageControl() {
         pageControl.numberOfPages = images.count
         pageControl.currentPage = 0
+        if pageControl.numberOfPages == 1 {
+            pageControl.isHidden = true
+        }
     }
 }

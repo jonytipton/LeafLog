@@ -471,9 +471,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="470"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ndf-3x-sEr">
-                                        <rect key="frame" x="84.333333333333329" y="0.0" width="224.66666666666669" height="41.666666666666664"/>
+                                        <rect key="frame" x="48" y="0.0" width="297" height="41.666666666666664"/>
                                         <attributedString key="attributedText">
-                                            <fragment content="Give A Name">
+                                            <fragment content="Give A Nickname">
                                                 <attributes>
                                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <font key="NSFont" size="36" name="ArialRoundedMTBold"/>
@@ -521,7 +521,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="mj6-mX-xGn"/>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="393" height="480"/>
+                    <size key="freeformSize" width="393" height="470"/>
                     <connections>
                         <outlet property="addPlantButton" destination="7qF-i9-bdM" id="9zj-nL-Oqt"/>
                         <outlet property="textField" destination="Xn0-gc-jfn" id="Jui-iQ-QDT"/>
@@ -530,7 +530,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaE-fi-2Ar" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3098" y="98"/>
+            <point key="canvasLocation" x="3171" y="98"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.2315481901" green="0.52954876419999997" blue="0.30584296579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
