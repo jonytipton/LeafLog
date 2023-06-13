@@ -34,11 +34,13 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
     func addDetailsTapped(alert: UIAction) {
         let ac = UIAlertController(title: "Lookup Plant Details?", message: "If you know the common name of \(plant.nickname?.uppercased() ?? "your plant") LeafLog can search for and populate care information.", preferredStyle: .alert)
         ac.addTextField { (textField) in
-            textField.placeholder = "i.e. Monstera, Phothos, Snake"
+            textField.placeholder = "i.e. Monstera, Golden Pothos, Snake"
         }
         ac.addAction(UIAlertAction(title: "Search", style: .default) { _ in
-            if let searchString = ac.textFields![0].text {
+            if let text = ac.textFields![0].text, text.count > 0 {
                 //TODO: validate search
+                let searchString = text.replacingOccurrences(of: " ", with: "+")
+                print("searchString: \(searchString)")
                 self.lookupID(keyword: searchString) { (value) in
                     if let plantID = value {
                         print("id: \(plantID)")
@@ -46,7 +48,8 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
                     }
                 }
             } else {
-                let ac = UIAlertController(title: "Keyword Missing", message: "Enter the common name for your plant", preferredStyle: .alert)
+                let ac = UIAlertController(title: "Invalid Search", message: "Enter the common or scientific name for your plant", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "See Help", style: .default)) //TODO: show gif of live lookup camera feature
                 ac.addAction(UIAlertAction(title: "OK", style: .default))
                 self.present(ac, animated: true)
             }
@@ -200,17 +203,15 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
             return cell
         case 8:
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailSlideshowCell", for: indexPath) as! DetailSlideshowCell
-            if cell.images.isEmpty {
+            if plant.userPhotos != cell.images {
                 cell.images = plant.userPhotos
             }
             return cell
         case 9:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "detailSlideshowCell", for: indexPath) as! DetailSlideshowCell
-            if cell.images.isEmpty {
-                if let data = plant.defaultPhoto {
-                    if let image = UIImage(data: data) {
-                        cell.images = [image]
-                    }
+            let cell = tableView.dequeueReusableCell(withIdentifier: "detailReferenceCell", for: indexPath) as! DetailReferenceCell
+            if let data = plant.defaultPhoto {
+                if let image = UIImage(data: data) {
+                    cell.referenceImageView.image = image
                 }
             }
             return cell
@@ -250,11 +251,9 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.section == 8 || indexPath.section == 9 {
+        if indexPath.section == 8 {
             let cell = cell as! DetailSlideshowCell
             cell.displayImages()
-            print("section: \(indexPath.section)")
-            print("images: \(cell.images)")
         }
     }
     
@@ -305,10 +304,6 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 9 {
-            return view.frame.height / 3.0
-        } else {
-            return tableView.rowHeight
-        }
+        return tableView.rowHeight
     }
 }

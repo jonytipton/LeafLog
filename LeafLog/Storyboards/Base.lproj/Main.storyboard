@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mkK-iu-H3g">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -255,6 +255,31 @@
                                     <outlet property="imageScrollView" destination="J4k-7M-zut" id="B4c-0E-kRj"/>
                                     <outlet property="pageControl" destination="cF3-mC-fzA" id="HAo-pb-cYm"/>
                                     <outlet property="scrollContentView" destination="Yze-1D-Fde" id="1uX-4y-gsq"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailReferenceCell" rowHeight="326" id="ixg-uG-pNb" customClass="DetailReferenceCell" customModule="LeafLog" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="750" width="430" height="326"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ixg-uG-pNb" id="vo3-uo-fxk">
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="326"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3yq-os-SWE">
+                                            <rect key="frame" x="20" y="20" width="390" height="286"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="280" id="fXy-qF-btX"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="3yq-os-SWE" secondAttribute="trailing" constant="20" symbolic="YES" id="OH5-mn-xn8"/>
+                                        <constraint firstItem="3yq-os-SWE" firstAttribute="leading" secondItem="vo3-uo-fxk" secondAttribute="leading" constant="20" symbolic="YES" id="RAW-gP-bkn"/>
+                                        <constraint firstAttribute="bottom" secondItem="3yq-os-SWE" secondAttribute="bottom" constant="20" symbolic="YES" id="TbY-XI-YKe"/>
+                                        <constraint firstItem="3yq-os-SWE" firstAttribute="top" secondItem="vo3-uo-fxk" secondAttribute="top" constant="20" symbolic="YES" id="zM8-PA-xwn"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="referenceImageView" destination="3yq-os-SWE" id="hia-f9-p2W"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

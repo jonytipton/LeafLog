@@ -10,12 +10,15 @@ import UIKit
 class DetailSlideshowCell: UITableViewCell, UIScrollViewDelegate {
 
     @IBOutlet var imageScrollView: UIScrollView!
-    
     @IBOutlet var scrollContentView: UIView!
-    
     @IBOutlet var pageControl: UIPageControl!
-    
-    var images: [UIImage] = []
+        
+    var images: [UIImage] = [] {
+        didSet {
+            awaitingDisplay = true
+            print("updates images array. awaitingDisplay is ture")
+        }
+    }
     var padding: CGFloat = 5
     var cornerRadius: CGFloat = 25
     var currentPage: Int = 0
@@ -36,7 +39,6 @@ class DetailSlideshowCell: UITableViewCell, UIScrollViewDelegate {
     
     func displayImages() {
         guard awaitingDisplay else { return }
-        
         for (index,image) in images.enumerated() {
             let view = UIImageView(image: image)
             view.contentMode = .scaleAspectFill
@@ -44,17 +46,20 @@ class DetailSlideshowCell: UITableViewCell, UIScrollViewDelegate {
             view.layer.cornerRadius = cornerRadius
             view.layer.masksToBounds = true
             scrollContentView.addSubview(view)
-            scrollContentView.widthAnchor.constraint(equalToConstant: imageScrollView.frame.width * CGFloat(images.count)).isActive = true
+            
             imageScrollView.isPagingEnabled = true
             imageScrollView.clipsToBounds = false
         }
+        scrollContentView.removeConstraints(scrollContentView.constraints)
+        scrollContentView.widthAnchor.constraint(equalToConstant: imageScrollView.frame.width * CGFloat(images.count)).isActive = true
+        
         configurePageControl()
         awaitingDisplay = false
     }
     
     func configurePageControl() {
         pageControl.numberOfPages = images.count
-        pageControl.currentPage = 0
+        pageControl.currentPage = currentPage
         if pageControl.numberOfPages == 1 {
             pageControl.isHidden = true
         }

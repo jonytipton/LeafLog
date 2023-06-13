@@ -82,9 +82,11 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                 if cameraAuthorizationStatus == .denied {
                     self.showDeniedAccessAlert()
                 } else {
-                    picker.view.addSubview(self.createCameraOverlay(for: picker.view))
-                    //addSubview() required for gesture recognizer to work, use cameraOverlayView option below if only adding UI
-                    //picker.cameraOverlayView? = createCameraOverlay(for: picker.view)
+                    DispatchQueue.main.sync {
+                        picker.view.addSubview(self.createCameraOverlay(for: picker.view))
+                        //addSubview() required for gesture recognizer to work, use cameraOverlayView option below if only adding UI
+                        //picker.cameraOverlayView? = createCameraOverlay(for: picker.view)
+                    }
                 }
             }
         }

@@ -25,6 +25,7 @@
 		F63E4BE22A3269B900AF0464 /* PlantStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63E4BE12A3269B900AF0464 /* PlantStruct.swift */; };
 		F63E4BE42A326C6500AF0464 /* PlantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63E4BE32A326C6500AF0464 /* PlantData.swift */; };
 		F63E4BE62A3284B400AF0464 /* PlantSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63E4BE52A3284B400AF0464 /* PlantSearch.swift */; };
+		F644FC752A39072600D8F934 /* DetailReferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F644FC742A39072600D8F934 /* DetailReferenceCell.swift */; };
 		F64A7CFD2A0B04B800ABA366 /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64A7CFC2A0B04B800ABA366 /* Plant.swift */; };
 		F64A7CFF2A0B05DA00ABA366 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64A7CFE2A0B05DA00ABA366 /* CoreDataManager.swift */; };
 		F64A7D012A0B072500ABA366 /* UIImageTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64A7D002A0B072500ABA366 /* UIImageTransformer.swift */; };
@@ -53,6 +54,7 @@
 		F63E4BE12A3269B900AF0464 /* PlantStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantStruct.swift; sourceTree = "<group>"; };
 		F63E4BE32A326C6500AF0464 /* PlantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantData.swift; sourceTree = "<group>"; };
 		F63E4BE52A3284B400AF0464 /* PlantSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantSearch.swift; sourceTree = "<group>"; };
+		F644FC742A39072600D8F934 /* DetailReferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReferenceCell.swift; sourceTree = "<group>"; };
 		F64A7CFC2A0B04B800ABA366 /* Plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
 		F64A7CFE2A0B05DA00ABA366 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F64A7D002A0B072500ABA366 /* UIImageTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageTransformer.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				F6DA1B7B29F888C3000713C7 /* DetailSlideshowCell.swift */,
 				F6DA1B7929F888B5000713C7 /* DetailTextCell.swift */,
 				F6DA1B7729F888A3000713C7 /* DetailImageCell.swift */,
+				F644FC742A39072600D8F934 /* DetailReferenceCell.swift */,
 			);
 			path = MyGarden;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				F6DA1B7A29F888B5000713C7 /* DetailTextCell.swift in Sources */,
 				F61A885429E8BA8800E23C5B /* SaveNewPlantViewController.swift in Sources */,
 				F61A885229E4A8AA00E23C5B /* CameraViewController.swift in Sources */,
+				F644FC752A39072600D8F934 /* DetailReferenceCell.swift in Sources */,
 				F6DA1B7829F888A3000713C7 /* DetailImageCell.swift in Sources */,
 				F62B503D29DB69A500C71595 /* LeafLog.xcdatamodeld in Sources */,
 				F63E4BE62A3284B400AF0464 /* PlantSearch.swift in Sources */,
