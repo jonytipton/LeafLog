@@ -21,7 +21,7 @@
                         <viewLayoutGuide key="safeArea" id="9Sp-NU-ndd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Needs Care" image="exclamationmark.circle" catalog="system" selectedImage="exclamationmark.circle.fill" id="3r0-0L-q0E"/>
+                    <tabBarItem key="tabBarItem" title="Plant Identifier" image="camera.macro.circle" catalog="system" selectedImage="camera.macro.circle.fill" id="3r0-0L-q0E"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fav-xG-thh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -561,8 +561,8 @@
     <color key="tintColor" red="0.2315481901" green="0.52954876419999997" blue="0.30584296579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
     <resources>
         <image name="camera.macro" catalog="system" width="128" height="114"/>
-        <image name="exclamationmark.circle" catalog="system" width="128" height="123"/>
-        <image name="exclamationmark.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="camera.macro.circle" catalog="system" width="128" height="123"/>
+        <image name="camera.macro.circle.fill" catalog="system" width="128" height="123"/>
         <image name="leaf" catalog="system" width="128" height="111"/>
         <image name="leaf.fill" catalog="system" width="128" height="109"/>
         <image name="pipe.and.drop" catalog="system" width="128" height="94"/>

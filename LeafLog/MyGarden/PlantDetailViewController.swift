@@ -59,7 +59,7 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
     }
     
     func editTapped(alert: UIAction) {
-        print("Edit Tapped")
+        tableView.isEditing = true
     }
     
     func deletePlantTapped(alert: UIAction) {
@@ -305,5 +305,102 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.rowHeight
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        switch indexPath.section {
+        case 1..<7:
+            return true
+        default:
+            return false
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 1...7:
+            return 44
+        default:
+            return tableView.rowHeight
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") {[weak self] (action, view, completionHandler) in
+            switch indexPath.section {
+            case 1:
+                self?.plant.nickname = nil
+            case 2:
+                self?.plant.sunlight = nil
+            case 3:
+                self?.plant.watering = nil
+            case 4:
+                self?.plant.cycle = nil
+            case 5:
+                self?.plant.commonName = nil
+            case 6:
+                self?.plant.scientificName = nil
+            default:
+                print("Error, how was button tapped?")
+            }
+            DispatchQueue.main.async {
+                self?.garden.saveChanges()
+                self?.tableView.reloadRows(at: [indexPath], with: .fade)
+                completionHandler(true)
+            }
+        }
+        
+        let edit = UIContextualAction(style: .normal, title: "Edit") {[weak self] (action, view, completionHandler) in
+            var title = ""
+            switch indexPath.section {
+            case 1:
+                title = "Nickname"
+            case 2:
+                title = "Sunlight Needs"
+            case 3:
+                title = "Watering Needs"
+            case 4:
+                title = "Bloom Cycle"
+            case 5:
+                title = "Common Name"
+            case 6:
+                title = "Scientific Names"
+            case 7:
+                title = "Date Added"
+            default:
+                title = "section"
+            }
+            
+            let ac = UIAlertController(title: "Edit \(title)", message: nil, preferredStyle: .alert)
+            ac.addTextField()
+            ac.addAction(UIAlertAction(title: "Cancel", style: .default))
+            ac.addAction(UIAlertAction(title: "Update", style: .default) { [weak self] _ in
+                if let value = ac.textFields?[0].text {
+                    switch indexPath.section {
+                    case 1:
+                        self?.plant.nickname = value
+                    case 2:
+                        self?.plant.sunlight = [value]
+                    case 3:
+                        self?.plant.watering = value
+                    case 4:
+                        self?.plant.cycle = value
+                    case 5:
+                        self?.plant.commonName = value
+                    case 6:
+                        self?.plant.scientificName = value
+                    default:
+                        print("do nothing")
+                    }
+                    DispatchQueue.main.async {
+                        self?.garden.saveChanges()
+                        self?.tableView.reloadSections(IndexSet(arrayLiteral: 0, indexPath.section), with: .fade)
+                    }
+                }
+            })
+            self?.present(ac,animated: true)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [edit, delete])
     }
 }
