@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UICollectionViewController, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout  {
+class ViewController: UICollectionViewController, UINavigationControllerDelegate, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate  {
     
     enum PlantFilters: String {
         case ascending = "Ascending"
@@ -33,9 +33,9 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         
         title = "My Garden"
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPlant))
-        let filterAscending = UIAction(title: "Ascending", image: UIImage(systemName: "arrow.up"), handler: filterAscending)
-        let filterDescending = UIAction(title: "Descending", image: UIImage(systemName: "arrow.down"), handler: filterDescending)
-        let filterFavorites = UIAction(title: "Favorites", image: UIImage(systemName: "star"), handler: filterFavorites)
+        let filterAscending = UIAction(title: "A - Z", image: UIImage(systemName: "arrow.up"), handler: filterAscending)
+        let filterDescending = UIAction(title: "Z - A", image: UIImage(systemName: "arrow.down"), handler: filterDescending)
+        let filterFavorites = UIAction(title: "Favorites", image: UIImage(systemName: "star.fill"), handler: filterFavorites)
         
         switch selectedFilter {
         case .descending:
@@ -85,7 +85,11 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
             })
             break
         case .favorites:
-            //TODO: filter by favorites tag
+            plants = self.plants.sorted(by: {
+                guard let nameA = $0.nickname, let nameB = $1.nickname else { return false }
+                return nameA < nameB
+            })
+            plants.sort { $0.isFavorited && !$1.isFavorited }
             break
         default:
             //Ascending
@@ -113,15 +117,25 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "plantCell", for: indexPath) as? PlantCell else { fatalError("Unable to dequeue resuable cell with identifer: 'plantCell'")}
-        cell.titleLabel.text = plants[indexPath.item].nickname
-        if let photoData = plants[indexPath.item].displayPhoto {
+        let plant = plants[indexPath.item]
+        if plant.isFavorited {
+            let starAttachment = NSTextAttachment()
+            starAttachment.image = UIImage(systemName: "star.fill")?.withTintColor(UIColor.init(named: "appGreen")!)
+            let attributedString = NSMutableAttributedString()
+            attributedString.append(NSAttributedString(attachment: starAttachment))
+            attributedString.append(NSAttributedString(string: plant.nickname?.capitalized ?? ""))
+            cell.titleLabel.attributedText = attributedString
+        } else {
+            cell.titleLabel.text = plant.nickname?.capitalized
+        }
+        if let photoData = plant.displayPhoto {
             if let image = UIImage(data: photoData) {
                 cell.imageView.image = image
             }
         }
         //recalculate frame width for imageView corner radius
         cell.layoutIfNeeded()
-        
+        cell.layer.cornerRadius = cell.layer.frame.size.width / 4.0
         return cell
     }
     
@@ -170,7 +184,7 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let cell = cell as? PlantCell else { return }
-        cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2.0
+        cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 4.0
     }
     
     
@@ -181,8 +195,8 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         
         let totalSpace = flowLayout.sectionInset.left + flowLayout.sectionInset.right + (flowLayout.minimumInteritemSpacing * CGFloat(cellsPerRowCount - 1))
         
-        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(cellsPerRowCount))
-        return CGSize(width: size, height: size)
+        let size = Double((collectionView.bounds.width - totalSpace) / CGFloat(cellsPerRowCount))
+        return CGSize(width: size, height: size * 1.5)
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -203,5 +217,39 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         reloadPlants()
     }
     
+    override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
+        configureContextMenu(paths: indexPaths)
+    }
+    
+    func configureContextMenu(paths: [IndexPath]) -> UIContextMenuConfiguration {
+        let context = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (action) -> UIMenu? in
+            guard let index = paths.first else { return UIMenu()}
+            
+            let selectedPlant = self.plants[index.item]
+            var starImage = "star"
+            var favoriteText = "Favorite"
+            if selectedPlant.isFavorited {
+                starImage = "star.slash"
+                favoriteText = "Remove Favorite"
+            }
+            
+            let favorite = UIAction(title: favoriteText, image: UIImage(systemName: starImage)) { _ in
+                selectedPlant.isFavorited.toggle()
+                self.saveChanges()
+                self.collectionView.reloadData()
+            }
+            let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+                let ac = UIAlertController(title: "Are you sure?", message: "This will delete \(selectedPlant.nickname ?? "your plant") from your garden. This cannot be undone!", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
+                    self.deletePlant(selectedPlant)
+                })
+                ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                self.present(ac, animated: true)
+            }
+            return UIMenu(children: [favorite, delete])
+        }
+        
+        return context
+    }
 }
 

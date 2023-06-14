@@ -21,11 +21,10 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
         tableView.contentInset = UIEdgeInsets(top: -defaultHeaderHeight, left: 0, bottom: 0, right: 0)
         
         let addDetails = UIAction(title: "Add Details", image: UIImage(systemName: "magnifyingglass.circle"), handler: addDetailsTapped)
-        let editPlant = UIAction(title: "Edit Plant", image: UIImage(systemName: "leaf"), handler: editTapped)
         let addPhoto = UIAction(title: "Add Photo", image: UIImage(systemName: "camera.viewfinder"), handler: addPhotoTapped)
         let deletePlant = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive, handler: deletePlantTapped)
         
-        let menu = UIMenu(title: "", options: .displayInline, children: [addDetails, editPlant, addPhoto, deletePlant])
+        let menu = UIMenu(title: "", options: .displayInline, children: [addDetails, addPhoto, deletePlant])
         let menuButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: nil)
         menuButton.menu = menu
         navigationItem.rightBarButtonItems = [menuButton]
@@ -56,10 +55,6 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
         })
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(ac, animated: true)
-    }
-    
-    func editTapped(alert: UIAction) {
-        tableView.isEditing = true
     }
     
     func deletePlantTapped(alert: UIAction) {
@@ -305,15 +300,6 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.rowHeight
-    }
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        switch indexPath.section {
-        case 1..<7:
-            return true
-        default:
-            return false
-        }
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

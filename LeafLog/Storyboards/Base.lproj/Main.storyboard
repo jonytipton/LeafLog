@@ -11,22 +11,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Needs Care-->
-        <scene sceneID="tdf-dE-7QI">
-            <objects>
-                <viewController title="Needs Care" id="c8j-RL-Re2" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jaZ-Wy-4fa">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="9Sp-NU-ndd"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Plant Identifier" image="camera.macro.circle" catalog="system" selectedImage="camera.macro.circle.fill" id="3r0-0L-q0E"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fav-xG-thh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="723" y="746"/>
-        </scene>
         <!--Watering Schedule-->
         <scene sceneID="4f9-M8-rvb">
             <objects>
@@ -63,9 +47,8 @@
                         <color key="selectedImageTintColor" red="0.2315481901" green="0.52954876419999997" blue="0.30584296579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
-                        <segue destination="qDI-l2-Wd4" kind="relationship" relationship="viewControllers" id="WYT-T4-jpm"/>
                         <segue destination="WEs-p1-kQ9" kind="relationship" relationship="viewControllers" id="GB6-Mq-dBT"/>
-                        <segue destination="c8j-RL-Re2" kind="relationship" relationship="viewControllers" id="XSh-lC-f8k"/>
+                        <segue destination="qDI-l2-Wd4" kind="relationship" relationship="viewControllers" id="WYT-T4-jpm"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S13-sF-0cQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -94,27 +77,26 @@
                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Tg0-wA-JDI">
-                                            <rect key="frame" x="15" y="0.0" width="120" height="120"/>
-                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="Tg0-wA-JDI" secondAttribute="height" multiplier="1:1" id="Ee3-OL-wi2"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69V-dK-4kH">
-                                            <rect key="frame" x="54.333333333333329" y="128" width="41.333333333333329" height="22"/>
+                                            <rect key="frame" x="5" y="124.66666666666667" width="140" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Tg0-wA-JDI">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="119.66666666666667"/>
+                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Tg0-wA-JDI" firstAttribute="centerX" secondItem="69V-dK-4kH" secondAttribute="centerX" id="ISi-eq-0fB"/>
-                                        <constraint firstItem="69V-dK-4kH" firstAttribute="top" secondItem="Tg0-wA-JDI" secondAttribute="bottom" constant="8" symbolic="YES" id="Zdq-cj-2pZ"/>
-                                        <constraint firstAttribute="bottom" secondItem="69V-dK-4kH" secondAttribute="bottom" id="cx3-Qb-FAX"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="69V-dK-4kH" secondAttribute="trailing" constant="5" id="Tlt-37-JxM"/>
+                                        <constraint firstItem="69V-dK-4kH" firstAttribute="top" secondItem="Tg0-wA-JDI" secondAttribute="bottom" constant="5" id="Zdq-cj-2pZ"/>
+                                        <constraint firstAttribute="bottom" secondItem="69V-dK-4kH" secondAttribute="bottom" constant="5" id="cx3-Qb-FAX"/>
                                         <constraint firstItem="Tg0-wA-JDI" firstAttribute="top" secondItem="y2b-Wc-EsD" secondAttribute="top" id="mUg-WU-sBD"/>
-                                        <constraint firstItem="Tg0-wA-JDI" firstAttribute="leading" secondItem="y2b-Wc-EsD" secondAttribute="leading" constant="15" id="x0h-pn-uBi"/>
-                                        <constraint firstAttribute="trailing" secondItem="Tg0-wA-JDI" secondAttribute="trailing" constant="15" id="xi1-Aw-Eks"/>
+                                        <constraint firstItem="Tg0-wA-JDI" firstAttribute="leading" secondItem="y2b-Wc-EsD" secondAttribute="leading" id="x0h-pn-uBi"/>
+                                        <constraint firstAttribute="trailing" secondItem="Tg0-wA-JDI" secondAttribute="trailing" id="xi1-Aw-Eks"/>
+                                        <constraint firstItem="69V-dK-4kH" firstAttribute="leading" secondItem="y2b-Wc-EsD" secondAttribute="leading" constant="5" id="zHS-hp-QaJ"/>
                                         <constraint firstItem="Tg0-wA-JDI" firstAttribute="centerX" secondItem="y2b-Wc-EsD" secondAttribute="centerX" id="zP1-EO-6Am"/>
                                     </constraints>
                                 </collectionViewCellContentView>
@@ -561,8 +543,6 @@
     <color key="tintColor" red="0.2315481901" green="0.52954876419999997" blue="0.30584296579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
     <resources>
         <image name="camera.macro" catalog="system" width="128" height="114"/>
-        <image name="camera.macro.circle" catalog="system" width="128" height="123"/>
-        <image name="camera.macro.circle.fill" catalog="system" width="128" height="123"/>
         <image name="leaf" catalog="system" width="128" height="111"/>
         <image name="leaf.fill" catalog="system" width="128" height="109"/>
         <image name="pipe.and.drop" catalog="system" width="128" height="94"/>

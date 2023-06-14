@@ -26,5 +26,5 @@ class Plant: NSManagedObject {
     @NSManaged public var sunlight: [String]?
     @NSManaged public var userPhotos: [UIImage]
     @NSManaged public var watering: String?
-
+    @NSManaged public var isFavorited: Bool
 }

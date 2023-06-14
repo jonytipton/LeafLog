@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         if let tabBarController = self.window?.rootViewController as? UITabBarController {
-            tabBarController.selectedIndex = 1 //Set My Garden tab as default
+            tabBarController.selectedIndex = 0 //Set My Garden tab as default
         }
         window?.tintColor = UIColor.init(named: "appGreen")
     }
