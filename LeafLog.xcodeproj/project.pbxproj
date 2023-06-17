@@ -11,6 +11,7 @@
 		F61A885429E8BA8800E23C5B /* SaveNewPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A885329E8BA8800E23C5B /* SaveNewPlantViewController.swift */; };
 		F61A885629F33A2400E23C5B /* ScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A885529F33A2400E23C5B /* ScheduleTableViewController.swift */; };
 		F61A885829F33B4000E23C5B /* PlantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A885729F33B4000E23C5B /* PlantDetailViewController.swift */; };
+		F6239C812A3E2D2300D298DF /* UpdatePlantController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6239C802A3E2D2300D298DF /* UpdatePlantController.swift */; };
 		F62B503329DB69A500C71595 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B503229DB69A500C71595 /* AppDelegate.swift */; };
 		F62B503529DB69A500C71595 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B503429DB69A500C71595 /* SceneDelegate.swift */; };
 		F62B503729DB69A500C71595 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B503629DB69A500C71595 /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 		F61A885329E8BA8800E23C5B /* SaveNewPlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveNewPlantViewController.swift; sourceTree = "<group>"; };
 		F61A885529F33A2400E23C5B /* ScheduleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewController.swift; sourceTree = "<group>"; };
 		F61A885729F33B4000E23C5B /* PlantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailViewController.swift; sourceTree = "<group>"; };
+		F6239C802A3E2D2300D298DF /* UpdatePlantController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePlantController.swift; sourceTree = "<group>"; };
 		F62B502F29DB69A500C71595 /* LeafLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeafLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F62B503229DB69A500C71595 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F62B503429DB69A500C71595 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				F6DA1B7529F86D39000713C7 /* MyGarden */,
 				F61A885529F33A2400E23C5B /* ScheduleTableViewController.swift */,
+				F6239C802A3E2D2300D298DF /* UpdatePlantController.swift */,
 				F62B5F3229F5E82B00E34D1C /* jsonTest */,
 				F62B503229DB69A500C71595 /* AppDelegate.swift */,
 				F62B503429DB69A500C71595 /* SceneDelegate.swift */,
@@ -230,6 +233,7 @@
 				F62B503D29DB69A500C71595 /* LeafLog.xcdatamodeld in Sources */,
 				F63E4BE62A3284B400AF0464 /* PlantSearch.swift in Sources */,
 				F62B503529DB69A500C71595 /* SceneDelegate.swift in Sources */,
+				F6239C812A3E2D2300D298DF /* UpdatePlantController.swift in Sources */,
 				F6DA1B7C29F888C3000713C7 /* DetailSlideshowCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

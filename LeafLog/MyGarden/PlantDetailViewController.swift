@@ -17,6 +17,8 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        
         navigationItem.largeTitleDisplayMode = .never
         tableView.contentInset = UIEdgeInsets(top: -defaultHeaderHeight, left: 0, bottom: 0, right: 0)
         
@@ -160,6 +162,7 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailImageCell") as! DetailImageCell
             cell.detailImageView.image = UIImage(data: plant.displayPhoto!)
             cell.plantLabel.text = plant.nickname?.uppercased()
+            cell.isUserInteractionEnabled = false
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailTextCell") as! DetailTextCell
@@ -201,6 +204,7 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
             if plant.userPhotos != cell.images {
                 cell.images = plant.userPhotos
             }
+            cell.selectionStyle = .none
             return cell
         case 9:
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailReferenceCell", for: indexPath) as! DetailReferenceCell
@@ -209,6 +213,7 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
                     cell.referenceImageView.image = image
                 }
             }
+            cell.selectionStyle = .none
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailTextCell") as! DetailTextCell
@@ -311,6 +316,15 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
         }
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        switch indexPath.section {
+        case 1...7:
+            return true
+        default:
+            return false
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") {[weak self] (action, view, completionHandler) in
             switch indexPath.section {
@@ -326,6 +340,8 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
                 self?.plant.commonName = nil
             case 6:
                 self?.plant.scientificName = nil
+            case 7:
+                self?.displayDatePicker()
             default:
                 print("Error, how was button tapped?")
             }
@@ -376,7 +392,7 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
                     case 6:
                         self?.plant.scientificName = value
                     default:
-                        print("do nothing")
+                        print("Do not update section: \(title)")
                     }
                     DispatchQueue.main.async {
                         self?.garden.saveChanges()
@@ -386,7 +402,51 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
             })
             self?.present(ac,animated: true)
         }
-        
         return UISwipeActionsConfiguration(actions: [edit, delete])
+    }
+    
+    func displayDatePicker() {
+        //present a view modally
+        if let updatePlantController = storyboard?.instantiateViewController(withIdentifier: "updatePlantVC") as? UpdatePlantController {
+            let nav = UINavigationController(rootViewController: updatePlantController)
+            nav.modalPresentationStyle = .pageSheet
+            nav.isModalInPresentation = true
+            if let sheet = nav.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.preferredCornerRadius = 50
+            }
+            
+            let cancel = UIBarButtonItem(__barButtonSystemItem: .close, primaryAction: .init(handler: { [weak self] _ in
+                //AC confirmation prompt
+                self?.tableView.isScrollEnabled = true
+                self?.dismiss(animated: true)
+            }))
+            updatePlantController.navigationItem.rightBarButtonItem = cancel
+            updatePlantController.navigationItem.rightBarButtonItem?.tintColor = UIColor.init(named: "titleColor")
+            updatePlantController.navigationController?.additionalSafeAreaInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+            updatePlantController.delegate = self
+            present(nav, animated: true)
+        }
+    }
+    
+    @objc func cancelPressed() {
+        self.view.endEditing(true)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 7:
+            tableView.scrollToNearestSelectedRow(at: .middle, animated: true)
+            tableView.isScrollEnabled = false
+            displayDatePicker()
+            tableView.deselectRow(at: indexPath, animated: true)
+        default:
+            break
+        }
+    }
+    
+    
+    @objc func datePickerValueChanged(_ sender: UIDatePicker) {
+        print("New Value: \(sender.date)")
     }
 }

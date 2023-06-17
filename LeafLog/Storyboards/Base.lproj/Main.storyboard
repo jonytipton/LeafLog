@@ -122,7 +122,7 @@
         <scene sceneID="V0z-4o-Wte">
             <objects>
                 <tableViewController storyboardIdentifier="plantDetailViewController" id="lju-7f-6Bb" customClass="PlantDetailViewController" customModule="LeafLog" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" id="nn4-Pm-gTK">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" id="nn4-Pm-gTK">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
@@ -280,11 +280,11 @@
             <objects>
                 <viewController storyboardIdentifier="newPlantController" modalPresentationStyle="pageSheet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U33-y0-htY" customClass="NewPlantController" customModule="LeafLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1At-Hl-Xvu" userLabel="Planting Time View">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="490"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QVe-rf-IRz">
-                                <rect key="frame" x="20" y="0.0" width="353" height="490"/>
+                                <rect key="frame" x="20" y="0.0" width="353" height="480"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSq-cg-NNk">
                                         <rect key="frame" x="47.333333333333343" y="0.0" width="258.33333333333326" height="41.666666666666664"/>
@@ -300,20 +300,20 @@
                                         <color key="highlightedColor" systemColor="labelColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Add a new plant by selecting one of the options below" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyF-pK-dyt">
-                                        <rect key="frame" x="24.666666666666657" y="86.666666666666671" width="304" height="40.666666666666671"/>
+                                        <rect key="frame" x="24.666666666666657" y="84" width="304" height="40.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="RFe-k6-6FU">
-                                        <rect key="frame" x="104.66666666666669" y="172.33333333333337" width="144" height="143.66666666666663"/>
+                                        <rect key="frame" x="104.66666666666669" y="167.33333333333337" width="144" height="143.66666666666663"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="RFe-k6-6FU" secondAttribute="height" multiplier="1:1" id="yEz-Wq-CZh"/>
                                         </constraints>
                                         <imageReference key="image" image="camera.macro" catalog="system" symbolScale="default"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IgV-LK-XkI">
-                                        <rect key="frame" x="26.666666666666657" y="361" width="300" height="50"/>
+                                        <rect key="frame" x="26.666666666666657" y="353.33333333333331" width="300" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="fd4-bD-p7W"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="wEI-gt-uxK"/>
@@ -328,7 +328,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uuB-O8-chr">
-                                        <rect key="frame" x="86.666666666666686" y="455.66666666666669" width="180" height="34.333333333333314"/>
+                                        <rect key="frame" x="86.666666666666686" y="445.66666666666669" width="180" height="34.333333333333314"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Choose from Photos"/>
                                         <connections>
@@ -351,7 +351,7 @@
                         </constraints>
                     </view>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="393" height="500"/>
+                    <size key="freeformSize" width="393" height="490"/>
                     <connections>
                         <outlet property="newButton" destination="IgV-LK-XkI" id="8MG-cS-d12"/>
                         <outlet property="newPlantTitle" destination="wSq-cg-NNk" id="HH0-Sy-kBq"/>
@@ -360,7 +360,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a4G-oh-Uw4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1589" y="98"/>
+            <point key="canvasLocation" x="1588.6046511627908" y="101.07296137339057"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="sLe-dv-qA6">
@@ -538,6 +538,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaE-fi-2Ar" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3171" y="98"/>
+        </scene>
+        <!--Update Plant Controller-->
+        <scene sceneID="fA8-Sl-5j8">
+            <objects>
+                <viewController storyboardIdentifier="updatePlantVC" id="kRO-i0-U7o" customClass="UpdatePlantController" customModule="LeafLog" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qc8-x5-fcJ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="470"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CBN-Ic-jAE">
+                                <rect key="frame" x="0.0" y="20" width="393" height="450"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82c-Jy-Tsr">
+                                        <rect key="frame" x="84" y="0.0" width="225" height="41.666666666666664"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Change Date">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <font key="NSFont" size="36" name="ArialRoundedMTBold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <color key="highlightedColor" systemColor="labelColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="lQX-17-OL1">
+                                        <rect key="frame" x="36.666666666666657" y="140" width="320" height="162"/>
+                                    </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqu-EU-iXG">
+                                        <rect key="frame" x="46.666666666666657" y="400" width="300" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Tms-bY-HXs"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="hrc-Xw-Mkp"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Update" cornerStyle="large">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="tappedUpdateButton:" destination="kRO-i0-U7o" eventType="touchUpInside" id="iX7-zG-S1o"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="82c-Jy-Tsr" firstAttribute="height" secondItem="kqu-EU-iXG" secondAttribute="height" multiplier="0.833333" id="hdp-S6-u78"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RdH-AQ-Y7I"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CBN-Ic-jAE" firstAttribute="leading" secondItem="RdH-AQ-Y7I" secondAttribute="leading" id="4Gd-Zb-OH4"/>
+                            <constraint firstItem="CBN-Ic-jAE" firstAttribute="top" secondItem="Qc8-x5-fcJ" secondAttribute="top" constant="20" symbolic="YES" id="OsK-Fn-AXY"/>
+                            <constraint firstItem="CBN-Ic-jAE" firstAttribute="bottom" secondItem="RdH-AQ-Y7I" secondAttribute="bottom" id="TQP-gq-RhF"/>
+                            <constraint firstItem="RdH-AQ-Y7I" firstAttribute="trailing" secondItem="CBN-Ic-jAE" secondAttribute="trailing" id="vqb-5J-pEE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="XqW-lO-o8o"/>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="393" height="470"/>
+                    <connections>
+                        <outlet property="datePicker" destination="lQX-17-OL1" id="Yiy-Pu-XGw"/>
+                        <outlet property="updateButtonLabel" destination="kqu-EU-iXG" id="VV7-CG-NHd"/>
+                        <outlet property="updateLabel" destination="82c-Jy-Tsr" id="mic-Sz-E1w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xjo-jU-3qe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3170.9302325581393" y="-297.42489270386267"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.2315481901" green="0.52954876419999997" blue="0.30584296579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
