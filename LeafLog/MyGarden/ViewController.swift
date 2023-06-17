@@ -118,15 +118,19 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "plantCell", for: indexPath) as? PlantCell else { fatalError("Unable to dequeue resuable cell with identifer: 'plantCell'")}
         let plant = plants[indexPath.item]
+        cell.titleLabel.text = plant.nickname?.capitalized
         if plant.isFavorited {
-            let starAttachment = NSTextAttachment()
-            starAttachment.image = UIImage(systemName: "star.fill")?.withTintColor(UIColor.init(named: "appGreen")!)
-            let attributedString = NSMutableAttributedString()
-            attributedString.append(NSAttributedString(attachment: starAttachment))
-            attributedString.append(NSAttributedString(string: plant.nickname?.capitalized ?? ""))
-            cell.titleLabel.attributedText = attributedString
+            cell.starView.isHidden = false
+//            let starAttachment = NSTextAttachment()
+//            starAttachment.image = UIImage(systemName: "star.fill")?.withTintColor(UIColor.init(named: "appGreen")!)
+//            let attributedString = NSMutableAttributedString()
+//            attributedString.append(NSAttributedString(attachment: starAttachment))
+//            attributedString.append(NSAttributedString(string: plant.nickname?.capitalized ?? ""))
+//            cell.titleLabel.attributedText = attributedString
+//        } else {
+//
         } else {
-            cell.titleLabel.text = plant.nickname?.capitalized
+            cell.starView.isHidden = true
         }
         if let photoData = plant.displayPhoto {
             if let image = UIImage(data: photoData) {

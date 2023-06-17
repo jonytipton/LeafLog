@@ -44,7 +44,7 @@ class SaveNewPlantViewController: UIViewController, UITextFieldDelegate {
         if let tabBar = self.presentingViewController as? UITabBarController {
             if let nav = tabBar.selectedViewController as? UINavigationController {
                 if let gardenController = nav.topViewController as? ViewController {
-                    let text = textField.text!
+                    let text = textField.text
                     
                     let newPlant = Plant(context: self.context)
                     newPlant.nickname = text
