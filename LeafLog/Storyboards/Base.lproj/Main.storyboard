@@ -90,7 +90,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ud3-hS-j1Z" userLabel="StarView">
-                                            <rect key="frame" x="0.0" y="-0.33333333333325754" width="150" height="20.000000000006551"/>
+                                            <rect key="frame" x="0.0" y="-0.33333333333333215" width="150" height="19.999999999999996"/>
                                             <color key="backgroundColor" systemColor="systemYellowColor"/>
                                             <color key="tintColor" name="titleColor"/>
                                         </imageView>
@@ -577,7 +577,7 @@
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="lQX-17-OL1">
                                         <rect key="frame" x="36.666666666666657" y="150" width="320" height="162"/>
                                     </datePicker>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqu-EU-iXG">
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqu-EU-iXG" userLabel="Update Detail Button Label">
                                         <rect key="frame" x="46.666666666666657" y="420" width="300" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Tms-bY-HXs"/>
@@ -619,6 +619,81 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xjo-jU-3qe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3170.9302325581393" y="-297.42489270386267"/>
+        </scene>
+        <!--Update Plant Detail View Controller-->
+        <scene sceneID="WUb-11-tMu">
+            <objects>
+                <viewController storyboardIdentifier="updateDetailVC" id="Zt6-7f-L8p" customClass="UpdatePlantDetailViewController" customModule="LeafLog" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SS9-Gl-VPn">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="470"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1NO-f3-Mjg">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="470"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSK-DE-ec0">
+                                        <rect key="frame" x="20" y="0.0" width="353" height="41.666666666666664"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Change">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <font key="NSFont" size="36" name="ArialRoundedMTBold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <color key="highlightedColor" systemColor="labelColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aVh-iv-8JG">
+                                        <rect key="frame" x="46.666666666666657" y="203.66666666666666" width="300" height="54.666666666666657"/>
+                                        <color key="backgroundColor" systemColor="systemFillColor"/>
+                                        <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="36"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nd1-RL-AC9">
+                                        <rect key="frame" x="46.666666666666657" y="420" width="300" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="C1X-SY-hQ3"/>
+                                            <constraint firstAttribute="height" constant="50" id="DvO-Wz-qDl"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Update" cornerStyle="large">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="updateDetailTapped:" destination="Zt6-7f-L8p" eventType="touchUpInside" id="M6e-99-lAP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="aVh-iv-8JG" firstAttribute="centerX" secondItem="1NO-f3-Mjg" secondAttribute="centerX" id="6yF-FZ-afa"/>
+                                    <constraint firstItem="aVh-iv-8JG" firstAttribute="width" secondItem="nd1-RL-AC9" secondAttribute="width" id="EMp-YX-8bZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="JSK-DE-ec0" secondAttribute="trailing" constant="20" symbolic="YES" id="aKb-uK-xnp"/>
+                                    <constraint firstItem="JSK-DE-ec0" firstAttribute="leading" secondItem="1NO-f3-Mjg" secondAttribute="leading" constant="20" symbolic="YES" id="sFd-cL-IAp"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6hd-ZH-61s"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1NO-f3-Mjg" firstAttribute="leading" secondItem="6hd-ZH-61s" secondAttribute="leading" id="J1U-Ds-rMO"/>
+                            <constraint firstItem="1NO-f3-Mjg" firstAttribute="bottom" secondItem="6hd-ZH-61s" secondAttribute="bottom" id="YQ9-xd-aP2"/>
+                            <constraint firstItem="6hd-ZH-61s" firstAttribute="trailing" secondItem="1NO-f3-Mjg" secondAttribute="trailing" id="Zss-QB-dj0"/>
+                            <constraint firstItem="1NO-f3-Mjg" firstAttribute="top" secondItem="6hd-ZH-61s" secondAttribute="top" id="pJ8-JZ-maO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="cWu-8X-DY8"/>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="393" height="470"/>
+                    <connections>
+                        <outlet property="changeLabel" destination="JSK-DE-ec0" id="PiR-Eb-bbb"/>
+                        <outlet property="detailTextfield" destination="aVh-iv-8JG" id="ecf-QM-eCx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lpC-hj-KO8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3171" y="-673"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.2315481901" green="0.52954876419999997" blue="0.30584296579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

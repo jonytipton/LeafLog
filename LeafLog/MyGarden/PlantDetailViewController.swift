@@ -318,10 +318,12 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         switch indexPath.section {
-        case 1...7:
-            return true
-        default:
+        case 0:
             return false
+        case 8:
+            return false
+        default:
+            return true
         }
     }
     
@@ -341,9 +343,11 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
             case 6:
                 self?.plant.scientificName = nil
             case 7:
-                self?.displayDatePicker()
+                self?.plant.dateAdded = nil
+            case 9:
+                self?.plant.defaultPhoto = nil
             default:
-                print("Error, how was button tapped?")
+                print("Error: Verify sections 0 and 8 are disabled for trailing swipe gesture. Selected section is: \(indexPath.section)")
             }
             DispatchQueue.main.async {
                 self?.garden.saveChanges()
@@ -351,58 +355,7 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
                 completionHandler(true)
             }
         }
-        
-        let edit = UIContextualAction(style: .normal, title: "Edit") {[weak self] (action, view, completionHandler) in
-            var title = ""
-            switch indexPath.section {
-            case 1:
-                title = "Nickname"
-            case 2:
-                title = "Sunlight Needs"
-            case 3:
-                title = "Watering Needs"
-            case 4:
-                title = "Bloom Cycle"
-            case 5:
-                title = "Common Name"
-            case 6:
-                title = "Scientific Names"
-            case 7:
-                title = "Date Added"
-            default:
-                title = "section"
-            }
-            
-            let ac = UIAlertController(title: "Edit \(title)", message: nil, preferredStyle: .alert)
-            ac.addTextField()
-            ac.addAction(UIAlertAction(title: "Cancel", style: .default))
-            ac.addAction(UIAlertAction(title: "Update", style: .default) { [weak self] _ in
-                if let value = ac.textFields?[0].text {
-                    switch indexPath.section {
-                    case 1:
-                        self?.plant.nickname = value
-                    case 2:
-                        self?.plant.sunlight = [value]
-                    case 3:
-                        self?.plant.watering = value
-                    case 4:
-                        self?.plant.cycle = value
-                    case 5:
-                        self?.plant.commonName = value
-                    case 6:
-                        self?.plant.scientificName = value
-                    default:
-                        print("Do not update section: \(title)")
-                    }
-                    DispatchQueue.main.async {
-                        self?.garden.saveChanges()
-                        self?.tableView.reloadSections(IndexSet(arrayLiteral: 0, indexPath.section), with: .fade)
-                    }
-                }
-            })
-            self?.present(ac,animated: true)
-        }
-        return UISwipeActionsConfiguration(actions: [edit, delete])
+        return UISwipeActionsConfiguration(actions: [delete])
     }
     
     func displayDatePicker() {
@@ -435,6 +388,10 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
+        case 1...6:
+            tableView.scrollToNearestSelectedRow(at: .middle, animated: true)
+            displayDetailModal(indexPath.section)
+            tableView.deselectRow(at: indexPath, animated: true)
         case 7:
             tableView.scrollToNearestSelectedRow(at: .middle, animated: true)
             tableView.isScrollEnabled = false
@@ -445,8 +402,40 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
         }
     }
     
+    func displayDetailModal(_ section: Int) {
+        if let updateDetailController = storyboard?.instantiateViewController(withIdentifier: "updateDetailVC") as? UpdatePlantDetailViewController {
+            let nav = UINavigationController(rootViewController: updateDetailController)
+            nav.modalPresentationStyle = .pageSheet
+            //nav.isModalInPresentation = true
+            if let sheet = nav.sheetPresentationController {
+                sheet.detents = [.large()]
+                sheet.preferredCornerRadius = 50
+            }
+            updateDetailController.delegate = self
+            updateDetailController.section = section
+            present(nav, animated: true)
+        }
+    }
     
-    @objc func datePickerValueChanged(_ sender: UIDatePicker) {
-        print("New Value: \(sender.date)")
+    func didFinishUpdatingDetailField(_ value: (Int, String)) {
+        switch value.0 {
+        case 1:
+            plant.nickname = value.1
+        case 2:
+            plant.sunlight = [value.1]
+        case 3:
+            plant.watering = value.1
+        case 4:
+            plant.cycle = value.1
+        case 5:
+            plant.commonName = value.1
+        case 6:
+            plant.scientificName = value.1
+        default:
+            break
+        }
+        garden.saveChanges()
+        tableView.reloadData()
+        tableView.isScrollEnabled = true
     }
 }
