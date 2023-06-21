@@ -19,8 +19,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         if let tabBarController = self.window?.rootViewController as? UITabBarController {
             tabBarController.selectedIndex = 0 //Set My Garden tab as default
+            tabBarController.tabBar.tintColor = UIColor(named: "titleColor")
+            tabBarController.tabBar.barTintColor = UIColor(named: "appBackground")
         }
-        window?.tintColor = UIColor.init(named: "appGreen")
+        
+        //Set universal background color - requires views be set to clear color
+        window?.backgroundColor = UIColor(named: "appBackground")
+        
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

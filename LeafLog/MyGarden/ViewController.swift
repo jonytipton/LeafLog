@@ -24,6 +24,7 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.backgroundColor = UIColor(named: "appBackground")
         
         fetchPlants()
         
@@ -45,12 +46,19 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         default:
             filterAscending.state = .on
         }
-        
+        //TODO: refactor into helper method for nav appearance setup
         let menu = UIMenu(title: "Sort By", options: .singleSelection, children: [filterAscending, filterDescending, filterFavorites])
         let menuButton = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal.decrease.circle"), style: .plain, target: self, action: nil)
         menuButton.menu = menu
         navigationItem.rightBarButtonItems = [menuButton, addButton]
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.tintColor = UIColor(named: "titleColor")
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor(named: "titleColor")!]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor(named: "titleColor")!]
+        appearance.backgroundColor = UIColor(named: "appBackground")
+        navigationItem.standardAppearance = appearance
         
         guard let collectionView = collectionView, let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         flowLayout.minimumInteritemSpacing = margin
@@ -121,14 +129,14 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         cell.titleLabel.text = plant.nickname?.capitalized
         if plant.isFavorited {
             cell.starView.isHidden = false
-//            let starAttachment = NSTextAttachment()
-//            starAttachment.image = UIImage(systemName: "star.fill")?.withTintColor(UIColor.init(named: "appGreen")!)
-//            let attributedString = NSMutableAttributedString()
-//            attributedString.append(NSAttributedString(attachment: starAttachment))
-//            attributedString.append(NSAttributedString(string: plant.nickname?.capitalized ?? ""))
-//            cell.titleLabel.attributedText = attributedString
-//        } else {
-//
+            //            let starAttachment = NSTextAttachment()
+            //            starAttachment.image = UIImage(systemName: "star.fill")?.withTintColor(UIColor.init(named: "appGreen")!)
+            //            let attributedString = NSMutableAttributedString()
+            //            attributedString.append(NSAttributedString(attachment: starAttachment))
+            //            attributedString.append(NSAttributedString(string: plant.nickname?.capitalized ?? ""))
+            //            cell.titleLabel.attributedText = attributedString
+            //        } else {
+            //
         } else {
             cell.starView.isHidden = true
         }
@@ -139,7 +147,17 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         }
         //recalculate frame width for imageView corner radius
         cell.layoutIfNeeded()
-        cell.layer.cornerRadius = cell.layer.frame.size.width / 4.0
+        cell.layer.cornerRadius = 25
+        
+        if !(cell.gradientView.layer.sublayers?.first is CAGradientLayer) {
+            let topColor = UIColor.clear.cgColor
+            let bottomColor = UIColor.black.withAlphaComponent(0.75).cgColor
+            let gradient = CAGradientLayer()
+            gradient.colors = [topColor, bottomColor]
+            gradient.frame = cell.gradientView.bounds
+            cell.gradientView.layer.insertSublayer(gradient, at: 0)
+        }
+        
         return cell
     }
     
@@ -187,20 +205,18 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
     }
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let cell = cell as? PlantCell else { return }
-        cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 4.0
+        //guard let cell = cell as? PlantCell else { return }
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellsPerRowCount = 3
+        let cellsPerRowCount = 1
         
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-        
         let totalSpace = flowLayout.sectionInset.left + flowLayout.sectionInset.right + (flowLayout.minimumInteritemSpacing * CGFloat(cellsPerRowCount - 1))
         
         let size = Double((collectionView.bounds.width - totalSpace) / CGFloat(cellsPerRowCount))
-        return CGSize(width: size, height: size * 1.5)
+        return CGSize(width: size, height: size / 2)
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

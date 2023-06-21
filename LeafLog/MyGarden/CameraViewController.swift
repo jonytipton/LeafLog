@@ -38,7 +38,6 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewDidLoad()
         
         titleLabel.textColor = UIColor.init(named: "titleColor")
-        navigationController?.navigationBar.tintColor = UIColor.init(named: "appGreen")
 #if targetEnvironment(simulator)
         if usingLibrary {
             instructionLabel.isHidden = true

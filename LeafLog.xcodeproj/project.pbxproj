@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F611588C2A42778800135DE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62B504029DB69A600C71595 /* LaunchScreen.storyboard */; };
 		F61A885229E4A8AA00E23C5B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A885129E4A8AA00E23C5B /* CameraViewController.swift */; };
 		F61A885429E8BA8800E23C5B /* SaveNewPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A885329E8BA8800E23C5B /* SaveNewPlantViewController.swift */; };
 		F61A885629F33A2400E23C5B /* ScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A885529F33A2400E23C5B /* ScheduleTableViewController.swift */; };
@@ -17,8 +18,6 @@
 		F62B503729DB69A500C71595 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B503629DB69A500C71595 /* ViewController.swift */; };
 		F62B503A29DB69A500C71595 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62B503829DB69A500C71595 /* Main.storyboard */; };
 		F62B503D29DB69A500C71595 /* LeafLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F62B503B29DB69A500C71595 /* LeafLog.xcdatamodeld */; };
-		F62B503F29DB69A600C71595 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62B503E29DB69A600C71595 /* Assets.xcassets */; };
-		F62B504229DB69A600C71595 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62B504029DB69A600C71595 /* LaunchScreen.storyboard */; };
 		F62B504C29DB7C5500C71595 /* PlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B504B29DB7C5500C71595 /* PlantCell.swift */; };
 		F62B504E29DB889B00C71595 /* NewPlantController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B504D29DB889B00C71595 /* NewPlantController.swift */; };
 		F62B5F3329F5E82B00E34D1C /* jsonTest in Resources */ = {isa = PBXBuildFile; fileRef = F62B5F3229F5E82B00E34D1C /* jsonTest */; };
@@ -31,6 +30,7 @@
 		F64A7CFF2A0B05DA00ABA366 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64A7CFE2A0B05DA00ABA366 /* CoreDataManager.swift */; };
 		F64A7D012A0B072500ABA366 /* UIImageTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64A7D002A0B072500ABA366 /* UIImageTransformer.swift */; };
 		F67551492A3E6CF100AA2628 /* UpdatePlantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67551482A3E6CF100AA2628 /* UpdatePlantDetailViewController.swift */; };
+		F6ABB2CF2A4278AC00035E65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62B503E29DB69A600C71595 /* Assets.xcassets */; };
 		F6DA1B7829F888A3000713C7 /* DetailImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DA1B7729F888A3000713C7 /* DetailImageCell.swift */; };
 		F6DA1B7A29F888B5000713C7 /* DetailTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DA1B7929F888B5000713C7 /* DetailTextCell.swift */; };
 		F6DA1B7C29F888C3000713C7 /* DetailSlideshowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DA1B7B29F888C3000713C7 /* DetailSlideshowCell.swift */; };
@@ -104,6 +104,7 @@
 		F62B503129DB69A500C71595 /* LeafLog */ = {
 			isa = PBXGroup;
 			children = (
+				F6B13EFE2A4247C7002E8604 /* Transitions */,
 				F6DA1B7529F86D39000713C7 /* MyGarden */,
 				F61A885529F33A2400E23C5B /* ScheduleTableViewController.swift */,
 				F6239C802A3E2D2300D298DF /* UpdatePlantController.swift */,
@@ -115,6 +116,13 @@
 				F6DA1B7629F86ECD000713C7 /* Storyboards */,
 			);
 			path = LeafLog;
+			sourceTree = "<group>";
+		};
+		F6B13EFE2A4247C7002E8604 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Transitions;
 			sourceTree = "<group>";
 		};
 		F6DA1B7529F86D39000713C7 /* MyGarden */ = {
@@ -202,8 +210,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F62B504229DB69A600C71595 /* LaunchScreen.storyboard in Resources */,
-				F62B503F29DB69A600C71595 /* Assets.xcassets in Resources */,
+				F6ABB2CF2A4278AC00035E65 /* Assets.xcassets in Resources */,
+				F611588C2A42778800135DE9 /* LaunchScreen.storyboard in Resources */,
 				F62B5F3329F5E82B00E34D1C /* jsonTest in Resources */,
 				F62B503A29DB69A500C71595 /* Main.storyboard in Resources */,
 			);

@@ -2,8 +2,9 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,35 +12,30 @@
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                    <view key="view" contentMode="scaleToFill" id="WlS-j8-sS2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oyI-F2-Uuc">
-                                <rect key="frame" x="20" y="59" width="353" height="759"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LeafLog" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shO-ao-ZNw">
-                                        <rect key="frame" x="117" y="0.0" width="119" height="406"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeafLogIcon" translatesAutoresizingMaskIntoConstraints="NO" id="gOR-U7-G5v">
-                                        <rect key="frame" x="0.0" y="406" width="353" height="353"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="gOR-U7-G5v" secondAttribute="height" multiplier="1:1" id="dIp-fI-HFv"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LeafLog" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyJ-zx-0sA">
+                                <rect key="frame" x="91" y="203" width="211" height="65"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="BAm-eA-pMo" userLabel="iconImage">
+                                <rect key="frame" x="46" y="276" width="301" height="300"/>
+                            </imageView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.2315481901" green="0.52954876419999997" blue="0.30584296579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <viewLayoutGuide key="safeArea" id="Iuu-7S-uuU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="oyI-F2-Uuc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="2RU-r7-Gyd"/>
-                            <constraint firstAttribute="trailing" secondItem="oyI-F2-Uuc" secondAttribute="trailing" constant="20" symbolic="YES" id="9NA-fi-y42"/>
-                            <constraint firstItem="oyI-F2-Uuc" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" symbolic="YES" id="LdP-FK-inS"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oyI-F2-Uuc" secondAttribute="bottom" id="uEn-Gn-rdE"/>
+                            <constraint firstItem="nyJ-zx-0sA" firstAttribute="centerX" secondItem="BAm-eA-pMo" secondAttribute="centerX" id="5BB-Ow-vTf"/>
+                            <constraint firstItem="Iuu-7S-uuU" firstAttribute="bottom" secondItem="BAm-eA-pMo" secondAttribute="bottom" constant="242" id="AGa-7F-61g"/>
+                            <constraint firstItem="BAm-eA-pMo" firstAttribute="top" secondItem="nyJ-zx-0sA" secondAttribute="bottom" constant="8" symbolic="YES" id="D9d-vU-DJM"/>
+                            <constraint firstItem="BAm-eA-pMo" firstAttribute="leading" secondItem="Iuu-7S-uuU" secondAttribute="leading" constant="46" id="FMv-Zu-SGF"/>
+                            <constraint firstItem="BAm-eA-pMo" firstAttribute="centerY" secondItem="WlS-j8-sS2" secondAttribute="centerY" id="RhE-HJ-vTw"/>
+                            <constraint firstItem="nyJ-zx-0sA" firstAttribute="leading" secondItem="Iuu-7S-uuU" secondAttribute="leading" constant="91" id="lzB-Am-FdL"/>
+                            <constraint firstItem="nyJ-zx-0sA" firstAttribute="centerX" secondItem="WlS-j8-sS2" secondAttribute="centerX" id="nmG-d5-zDa"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -49,6 +45,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LeafLogIcon" width="500" height="500"/>
+        <image name="launchIcon" width="1024" height="1024"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
