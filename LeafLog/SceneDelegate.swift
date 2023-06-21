@@ -21,6 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             tabBarController.selectedIndex = 0 //Set My Garden tab as default
             tabBarController.tabBar.tintColor = UIColor(named: "titleColor")
             tabBarController.tabBar.barTintColor = UIColor(named: "appBackground")
+            tabBarController.tabBar.isTranslucent = true
+            UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 10)!], for: .normal)
+            UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 10)!], for: .selected)
         }
         
         //Set universal background color - requires views be set to clear color

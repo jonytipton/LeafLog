@@ -53,10 +53,10 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         navigationItem.rightBarButtonItems = [menuButton, addButton]
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = UIColor(named: "titleColor")
-        
+        navigationController?.navigationBar.barTintColor = UIColor(named: "appBackground")
         let appearance = UINavigationBarAppearance()
-        appearance.titleTextAttributes = [.foregroundColor: UIColor(named: "titleColor")!]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor(named: "titleColor")!]
+        appearance.titleTextAttributes = [.foregroundColor: UIColor(named: "titleColor")!, .font: UIFont(name: "Futura", size: 20)!]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor(named: "titleColor")!, .font: UIFont(name: "Futura", size: 34)!]
         appearance.backgroundColor = UIColor(named: "appBackground")
         navigationItem.standardAppearance = appearance
         
@@ -213,6 +213,7 @@ class ViewController: UICollectionViewController, UINavigationControllerDelegate
         let cellsPerRowCount = 1
         
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        
         let totalSpace = flowLayout.sectionInset.left + flowLayout.sectionInset.right + (flowLayout.minimumInteritemSpacing * CGFloat(cellsPerRowCount - 1))
         
         let size = Double((collectionView.bounds.width - totalSpace) / CGFloat(cellsPerRowCount))

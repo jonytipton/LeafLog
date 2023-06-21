@@ -11,16 +11,25 @@ import UIKit
 class PlantDetailViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var plant: Plant!
-    var defaultHeaderHeight: CGFloat = 30
+    var defaultHeaderHeight: CGFloat = 40.0
+    var sectionHeaderTopPadding: CGFloat = 10.0
     var needsLayout = true
     weak var garden: ViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
-        
-        navigationItem.largeTitleDisplayMode = .never
         tableView.contentInset = UIEdgeInsets(top: -defaultHeaderHeight, left: 0, bottom: 0, right: 0)
+        tableView.sectionHeaderTopPadding = sectionHeaderTopPadding
+        title = plant.nickname
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.tintColor = UIColor(named: "titleColor")
+        navigationController?.navigationBar.barTintColor = UIColor(named: "appBackground")
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor(named: "titleColor")!, .font: UIFont(name: "Futura", size: 20)!]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor(named: "titleColor")!, .font: UIFont(name: "Futura", size: 34)!]
+        appearance.backgroundColor = UIColor(named: "appBackground")
+        navigationItem.standardAppearance = appearance
         
         let addDetails = UIAction(title: "Add Details", image: UIImage(systemName: "magnifyingglass.circle"), handler: addDetailsTapped)
         let addPhoto = UIAction(title: "Add Photo", image: UIImage(systemName: "camera.viewfinder"), handler: addPhotoTapped)
@@ -30,6 +39,8 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
         let menuButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: nil)
         menuButton.menu = menu
         navigationItem.rightBarButtonItems = [menuButton]
+        
+        tableView.backgroundColor = UIColor(named: "appBackground")
     }
     
     func addDetailsTapped(alert: UIAction) {
@@ -161,7 +172,6 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailImageCell") as! DetailImageCell
             cell.detailImageView.image = UIImage(data: plant.displayPhoto!)
-            cell.plantLabel.text = plant.nickname?.uppercased()
             cell.isUserInteractionEnabled = false
             return cell
         case 1:
@@ -226,78 +236,52 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
         
         switch section {
         case 0:
-            headerHeight = 1
+            headerHeight = sectionHeaderTopPadding * 2
         default:
             headerHeight = defaultHeaderHeight
         }
         return headerHeight
     }
-    
-    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
-        if section == 0 {
-            title = plant.nickname?.uppercased()
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if section == 0 {
-            title = ""
-        }
-    }
-    
+
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.section == 8 {
             let cell = cell as! DetailSlideshowCell
             cell.displayImages()
         }
+        cell.backgroundColor = UIColor.clear
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UITableViewHeaderFooterView()
         var config = headerView.defaultContentConfiguration()
-        config.textProperties.alignment = .center
-        
         var title = "Title"
         switch (section) {
         case 0:
-            //            title = "Display Photo"
-            title = ""
-            break
+            return nil
         case 1:
             title = "Nickname"
-            break
         case 2:
             title = "Sunlight Needs"
-            break
         case 3:
             title = "Watering Needs"
-            break
         case 4:
             title = "Bloom Cycle"
-            break
         case 5:
             title = "Common Name"
-            break
         case 6:
             title = "Scientific Names"
             break
         case 7:
             title = "Date Added"
-            break
         case 8:
             title = "User Photos"
-            break
         case 9:
             title = "Reference Photo"
         default:
             break
         }
         config.text = title
+        config.textProperties.font = UIFont(name: "Futura", size: 22)!
         config.textProperties.alignment = .center
         headerView.contentConfiguration = config
         return headerView
@@ -309,8 +293,12 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
+        case 0:
+            return tableView.window!.frame.height / 3
         case 1...7:
             return 44
+        case 9:
+            return tableView.window!.frame.height / 3
         default:
             return tableView.rowHeight
         }
