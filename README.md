@@ -17,21 +17,21 @@
   </p>
 </p>
 
-<p align="row">
+<p align="center">
     
-<img src="https://github.com/jonytipton/LeafLog/assets/42556403/5099f859-5715-449a-8eb9-39266125f291" width="300"/>
-<img src="https://github.com/jonytipton/LeafLog/assets/42556403/b69a17b9-df67-4ae6-9333-06bb03be65d3" width="300"/>
-<img src="https://github.com/jonytipton/LeafLog/assets/42556403/daa15e50-5325-46df-9e7d-984679590ad1" width="300"/>
+<img src="https://github.com/jonytipton/LeafLog/assets/42556403/5099f859-5715-449a-8eb9-39266125f291" width="200"/>
+<img src="https://github.com/jonytipton/LeafLog/assets/42556403/b69a17b9-df67-4ae6-9333-06bb03be65d3" width="200"/>
+<img src="https://github.com/jonytipton/LeafLog/assets/42556403/daa15e50-5325-46df-9e7d-984679590ad1" width="200"/>
 
 
 </p>
 
-<p align="row">
+<p align="center">
     
 
-<img src="https://github.com/jonytipton/LeafLog/assets/42556403/f0b2815b-6fbb-4bed-b82d-18e16edc38e2" width="300"/>
-<img src="https://github.com/jonytipton/LeafLog/assets/42556403/96751e2e-211e-465b-bf2a-b8e394818f30" width="300"/>
-<img src="https://github.com/jonytipton/LeafLog/assets/42556403/c418bf93-4fb3-438f-9525-adb123544d77" width="300"/>
+<img src="https://github.com/jonytipton/LeafLog/assets/42556403/f0b2815b-6fbb-4bed-b82d-18e16edc38e2" width="200"/>
+<img src="https://github.com/jonytipton/LeafLog/assets/42556403/96751e2e-211e-465b-bf2a-b8e394818f30" width="200"/>
+<img src="https://github.com/jonytipton/LeafLog/assets/42556403/c418bf93-4fb3-438f-9525-adb123544d77" width="200"/>
 
 
 </p>
