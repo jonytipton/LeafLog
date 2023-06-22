@@ -5,7 +5,6 @@
 //  Created by Jonathan Tipton on 4/3/23.
 //
 
-import AVFoundation
 import Photos
 import PhotosUI
 import UIKit

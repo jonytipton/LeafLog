@@ -18,9 +18,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         if let tabBarController = self.window?.rootViewController as? UITabBarController {
-            tabBarController.selectedIndex = 1 //Set My Garden tab as default
+            tabBarController.selectedIndex = 0 //Set My Garden tab as default
+            tabBarController.tabBar.tintColor = UIColor(named: "titleColor")
+            tabBarController.tabBar.barTintColor = UIColor(named: "appBackground")
+            tabBarController.tabBar.isTranslucent = true
+            UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 10)!], for: .normal)
+            UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Futura", size: 10)!], for: .selected)
         }
-        window?.tintColor = UIColor.init(named: "appGreen")
+        
+        //Set universal background color - requires views be set to clear color
+        window?.backgroundColor = UIColor(named: "appBackground")
+        window?.tintColor = UIColor(named: "AccentColor")
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -51,7 +60,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
 
         // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        //(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        
     }
 
 

@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22E261" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F66" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Plant" representedClassName="Plant" syncable="YES">
         <attribute name="commonName" optional="YES" attributeType="String"/>
         <attribute name="cycle" optional="YES" attributeType="String"/>
         <attribute name="dateAdded" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="defaultPhotos" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[NSData]"/>
+        <attribute name="defaultPhoto" optional="YES" attributeType="Binary" valueTransformerName="UIImageTransformer" allowsExternalBinaryDataStorage="YES" customClassName="UIImage"/>
         <attribute name="displayPhoto" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="isFavorited" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="nickname" optional="YES" attributeType="String"/>
+        <attribute name="reminderDay" optional="YES" attributeType="String"/>
+        <attribute name="reminderFrequency" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="scientificName" optional="YES" attributeType="String"/>
         <attribute name="sunlight" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
-        <attribute name="userPhotos" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[NSData]"/>
+        <attribute name="userPhotos" attributeType="Transformable" valueTransformerName="UIImageTransformer" customClassName="[UIImage]"/>
         <attribute name="watering" optional="YES" attributeType="String"/>
     </entity>
 </model>

@@ -9,7 +9,8 @@ import UIKit
 
 class PlantCell: UICollectionViewCell {
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var starView: UIImageView!
+    @IBOutlet var gradientView: UIView!
+    @IBOutlet var alarmView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
-    
-    
 }

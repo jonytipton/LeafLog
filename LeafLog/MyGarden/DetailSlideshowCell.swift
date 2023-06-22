@@ -10,16 +10,17 @@ import UIKit
 class DetailSlideshowCell: UITableViewCell, UIScrollViewDelegate {
 
     @IBOutlet var imageScrollView: UIScrollView!
-    
     @IBOutlet var scrollContentView: UIView!
-    
     @IBOutlet var pageControl: UIPageControl!
-    
-    var images: [UIImage] = []
+        
+    var images: [UIImage] = [] {
+        didSet {
+            displayImages()
+        }
+    }
     var padding: CGFloat = 5
     var cornerRadius: CGFloat = 25
     var currentPage: Int = 0
-    // Temp workaround to limit reloading of images. Will need to refactor this and PlantDetailViewController during performance testing to properly resolve issue.
     var awaitingDisplay = true
     
     override func awakeFromNib() {
@@ -36,24 +37,28 @@ class DetailSlideshowCell: UITableViewCell, UIScrollViewDelegate {
     
     func displayImages() {
         guard awaitingDisplay else { return }
-        
         for (index,image) in images.enumerated() {
             let view = UIImageView(image: image)
             view.contentMode = .scaleAspectFill
-            view.frame = CGRect(x: imageScrollView.frame.width * CGFloat(index) + padding, y: padding, width: imageScrollView.frame.width - (2 * padding), height: imageScrollView.frame.height - (4 * padding))
+            view.frame = CGRect(x: imageScrollView.frame.width * CGFloat(index) + padding, y: 0, width: imageScrollView.frame.width - (2 * padding), height: imageScrollView.frame.height - (6 * padding))
             view.layer.cornerRadius = cornerRadius
             view.layer.masksToBounds = true
             scrollContentView.addSubview(view)
-            scrollContentView.widthAnchor.constraint(equalToConstant: imageScrollView.frame.width * CGFloat(images.count)).isActive = true
-            imageScrollView.isPagingEnabled = true
-            imageScrollView.clipsToBounds = false
         }
+        imageScrollView.isPagingEnabled = true
+        imageScrollView.clipsToBounds = false
+        scrollContentView.removeConstraints(scrollContentView.constraints)
+        scrollContentView.widthAnchor.constraint(equalToConstant: imageScrollView.frame.width * CGFloat(images.count)).isActive = true
+        
         configurePageControl()
         awaitingDisplay = false
     }
     
     func configurePageControl() {
         pageControl.numberOfPages = images.count
-        pageControl.currentPage = 0
+        pageControl.currentPage = currentPage
+        pageControl.hidesForSinglePage = true
+        pageControl.pageIndicatorTintColor = UIColor(named: "titleColor")?.withAlphaComponent(0.5)
+        pageControl.currentPageIndicatorTintColor = UIColor(named: "titleColor")
     }
 }

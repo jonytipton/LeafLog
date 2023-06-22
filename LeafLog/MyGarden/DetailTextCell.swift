@@ -12,7 +12,7 @@ class DetailTextCell: UITableViewCell {
     @IBOutlet var detailLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code 
+        detailLabel.font = UIFont(name: "Futura", size: 18)!
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

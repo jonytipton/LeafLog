@@ -28,7 +28,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        imageView.layer.borderColor = UIColor.init(named: "appGreen")?.cgColor
+        imageView.layer.borderColor = UIColor.init(named: "AccentColor")?.cgColor
         imageView.layer.borderWidth = 5
         imageView.clipsToBounds = true
         imageView.isUserInteractionEnabled = true
@@ -38,7 +38,6 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewDidLoad()
         
         titleLabel.textColor = UIColor.init(named: "titleColor")
-        navigationController?.navigationBar.tintColor = UIColor.init(named: "appGreen")
 #if targetEnvironment(simulator)
         if usingLibrary {
             instructionLabel.isHidden = true
@@ -82,9 +81,11 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                 if cameraAuthorizationStatus == .denied {
                     self.showDeniedAccessAlert()
                 } else {
-                    picker.view.addSubview(self.createCameraOverlay(for: picker.view))
-                    //addSubview() required for gesture recognizer to work, use cameraOverlayView option below if only adding UI
-                    //picker.cameraOverlayView? = createCameraOverlay(for: picker.view)
+                    DispatchQueue.main.sync {
+                        picker.view.addSubview(self.createCameraOverlay(for: picker.view))
+                        //addSubview() required for gesture recognizer to work, use cameraOverlayView option below if only adding UI
+                        //picker.cameraOverlayView? = createCameraOverlay(for: picker.view)
+                    }
                 }
             }
         }

@@ -10,16 +10,13 @@ import UIKit
 class DetailImageCell: UITableViewCell {
 
     @IBOutlet var detailImageView: UIImageView!
-    @IBOutlet var plantLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib() 
         // Initialization code
-        detailImageView.layer.cornerRadius = detailImageView.frame.width / 2
-        detailImageView.layer.borderColor = UIColor.init(named: "appGreen")?.cgColor
-        detailImageView.layer.borderWidth = 5
         detailImageView.clipsToBounds = true
         detailImageView.contentMode = .scaleAspectFill
+        detailImageView.layer.cornerRadius = 25
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
