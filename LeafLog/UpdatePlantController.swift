@@ -15,10 +15,11 @@ class UpdatePlantController: UIViewController {
     var delegate: PlantDetailViewController!
     
     override func viewDidLoad() {
-        guard (delegate != nil) else { fatalError("no PlantDetailViewController delege for modal!")}
+        guard (delegate != nil) else { fatalError("no PlantDetailViewController delegate for modal!")}
         super.viewDidLoad()
         updateLabel.textColor = UIColor.init(named: "titleColor")
         datePicker.date = delegate.plant.dateAdded ?? .now
+        view.backgroundColor = UIColor(named: "appBackground")
     }
     
     @IBAction func tappedUpdateButton(_ sender: Any) {

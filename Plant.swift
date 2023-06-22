@@ -21,10 +21,12 @@ class Plant: NSManagedObject {
     @NSManaged public var dateAdded: Date?
     @NSManaged public var defaultPhoto: Data?
     @NSManaged public var displayPhoto: Data?
+    @NSManaged public var isFavorited: Bool
     @NSManaged public var nickname: String?
     @NSManaged public var scientificName: String?
     @NSManaged public var sunlight: [String]?
     @NSManaged public var userPhotos: [UIImage]
     @NSManaged public var watering: String?
-    @NSManaged public var isFavorited: Bool
+    @NSManaged public var reminderDay: String?
+    @NSManaged public var reminderFrequency: Int64
 }

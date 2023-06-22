@@ -28,7 +28,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        imageView.layer.borderColor = UIColor.init(named: "appGreen")?.cgColor
+        imageView.layer.borderColor = UIColor.init(named: "AccentColor")?.cgColor
         imageView.layer.borderWidth = 5
         imageView.clipsToBounds = true
         imageView.isUserInteractionEnabled = true

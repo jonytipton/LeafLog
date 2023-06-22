@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //Set universal background color - requires views be set to clear color
         window?.backgroundColor = UIColor(named: "appBackground")
-        
+        window?.tintColor = UIColor(named: "AccentColor")
         
     }
 

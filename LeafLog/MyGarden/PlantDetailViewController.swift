@@ -32,15 +32,30 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
         navigationItem.standardAppearance = appearance
         
         let addDetails = UIAction(title: "Add Details", image: UIImage(systemName: "magnifyingglass.circle"), handler: addDetailsTapped)
+        let addReminder = UIAction(title: "Add Reminder", image: UIImage(systemName: "alarm"), handler: addReminderTapped)
         let addPhoto = UIAction(title: "Add Photo", image: UIImage(systemName: "camera.viewfinder"), handler: addPhotoTapped)
         let deletePlant = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive, handler: deletePlantTapped)
         
-        let menu = UIMenu(title: "", options: .displayInline, children: [addDetails, addPhoto, deletePlant])
+        let menu = UIMenu(title: "", options: .displayInline, children: [addDetails, addReminder, addPhoto, deletePlant])
         let menuButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: nil)
         menuButton.menu = menu
         navigationItem.rightBarButtonItems = [menuButton]
-        
         tableView.backgroundColor = UIColor(named: "appBackground")
+    }
+    
+    func addReminderTapped(alert: UIAction) {
+        if let reminderDetailController = storyboard?.instantiateViewController(withIdentifier: "reminderDetailVC") as? ReminderPlantDetailController {
+            let nav = UINavigationController(rootViewController: reminderDetailController)
+            nav.modalPresentationStyle = .pageSheet
+            //nav.isModalInPresentation = true
+            if let sheet = nav.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.preferredCornerRadius = 50
+            }
+            reminderDetailController.delegate = self
+            reminderDetailController.plant = self.plant
+            present(nav, animated: true)
+        }
     }
     
     func addDetailsTapped(alert: UIAction) {
@@ -158,7 +173,8 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 10
+        
+        return plant.defaultPhoto == nil ? 9 : 10
     }
     
     
@@ -172,7 +188,6 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailImageCell") as! DetailImageCell
             cell.detailImageView.image = UIImage(data: plant.displayPhoto!)
-            cell.isUserInteractionEnabled = false
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailTextCell") as! DetailTextCell
@@ -212,6 +227,7 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
         case 8:
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailSlideshowCell", for: indexPath) as! DetailSlideshowCell
             if plant.userPhotos != cell.images {
+                tableView.layoutIfNeeded()
                 cell.images = plant.userPhotos
             }
             cell.selectionStyle = .none
@@ -244,9 +260,12 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.section == 8 {
-            let cell = cell as! DetailSlideshowCell
-            cell.displayImages()
+        if indexPath.section == 9 {
+            if plant.defaultPhoto == nil {
+                cell.isHidden = true
+            } else {
+                cell.isHidden = false
+            }
         }
         cell.backgroundColor = UIColor.clear
     }
@@ -276,7 +295,11 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
         case 8:
             title = "User Photos"
         case 9:
-            title = "Reference Photo"
+            if plant.defaultPhoto == nil {
+                return nil
+            } else {
+                title = "Reference Photo"
+            }
         default:
             break
         }
@@ -286,21 +309,17 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
         headerView.contentConfiguration = config
         return headerView
     }
-    
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.rowHeight
-    }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
             return tableView.window!.frame.height / 3
-        case 1...7:
-            return 44
+        case 8:
+            return (tableView.window!.frame.height / 3) + 30
         case 9:
             return tableView.window!.frame.height / 3
         default:
-            return tableView.rowHeight
+            return UITableView.automaticDimension
         }
     }
     
@@ -339,7 +358,7 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
             }
             DispatchQueue.main.async {
                 self?.garden.saveChanges()
-                self?.tableView.reloadRows(at: [indexPath], with: .fade)
+                self?.tableView.reloadData()
                 completionHandler(true)
             }
         }
@@ -375,16 +394,21 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         switch indexPath.section {
+        case 0:
+            let ac = UIAlertController(title: "Change Display Photo?", message: "Choose from Photo Library or take a new photo", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Photo Library", style: .default))
+            ac.addAction(UIAlertAction(title: "Take Photo", style: .default))
+            ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            present(ac, animated: true)
         case 1...6:
-            tableView.scrollToNearestSelectedRow(at: .middle, animated: true)
             displayDetailModal(indexPath.section)
-            tableView.deselectRow(at: indexPath, animated: true)
+            break
         case 7:
-            tableView.scrollToNearestSelectedRow(at: .middle, animated: true)
             tableView.isScrollEnabled = false
             displayDatePicker()
-            tableView.deselectRow(at: indexPath, animated: true)
         default:
             break
         }
@@ -396,7 +420,7 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
             nav.modalPresentationStyle = .pageSheet
             //nav.isModalInPresentation = true
             if let sheet = nav.sheetPresentationController {
-                sheet.detents = [.large()]
+                sheet.detents = [.medium()]
                 sheet.preferredCornerRadius = 50
             }
             updateDetailController.delegate = self
@@ -426,4 +450,5 @@ class PlantDetailViewController: UITableViewController, UIImagePickerControllerD
         tableView.reloadData()
         tableView.isScrollEnabled = true
     }
+    
 }

@@ -19,6 +19,9 @@ class UpdatePlantDetailViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         guard (delegate != nil) else { fatalError("PlantDetailViewController delegate is nil!")}
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor(named: "appBackground")
+        changeLabel.textColor = UIColor(named: "titleColor")
         switch section {
         case 1:
             changeLabel.text = "Change Nickname?"
