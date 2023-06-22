@@ -9,8 +9,7 @@
 # LeafLog
 <br />
 <p align="center">
-  <a href="https://github.com/alexanderritik/Best-README-Template">
-    <img src="https://github.com/jonytipton/LeafLog/assets/42556403/9fb08f39-cd79-4b18-8fba-84404d96617a" alt="Logo" width="100" height="100">
+    <img src="https://github.com/jonytipton/LeafLog/assets/42556403/1c3d9e40-78c1-4471-846b-3426ce6b8b75" alt="Logo" width="200" height="200">
   </a>
   <p align="center">
     LeafLog is an intuitive plant management app that empowers users to monitor and nurture their beloved plants effortlessly. With features such as progress photo tracking, watering reminders, and comprehensive plant details, LeafLog provides a seamless and personalized experience for plant enthusiasts to cultivate thriving green companions. 
@@ -19,20 +18,17 @@
 
 <p align="center">
     
-<img src="https://github.com/jonytipton/LeafLog/assets/42556403/5099f859-5715-449a-8eb9-39266125f291" width="200"/>
-<img src="https://github.com/jonytipton/LeafLog/assets/42556403/b69a17b9-df67-4ae6-9333-06bb03be65d3" width="200"/>
-<img src="https://github.com/jonytipton/LeafLog/assets/42556403/daa15e50-5325-46df-9e7d-984679590ad1" width="200"/>
-
+<img src="https://github.com/jonytipton/LeafLog/assets/42556403/34e1f309-34e3-40cd-9d6e-b0a48cbe943e" width="200"/>
+<img src="https://github.com/jonytipton/LeafLog/assets/42556403/bccba39e-9396-4c8d-b18a-64e50cd1ca51" width="200"/>
+<img src="https://github.com/jonytipton/LeafLog/assets/42556403/7aa9bf98-71f8-46ac-a1db-1fa2b4b05f8b" width="200"/>
 
 </p>
 
 <p align="center">
-    
 
-<img src="https://github.com/jonytipton/LeafLog/assets/42556403/f0b2815b-6fbb-4bed-b82d-18e16edc38e2" width="200"/>
-<img src="https://github.com/jonytipton/LeafLog/assets/42556403/96751e2e-211e-465b-bf2a-b8e394818f30" width="200"/>
-<img src="https://github.com/jonytipton/LeafLog/assets/42556403/c418bf93-4fb3-438f-9525-adb123544d77" width="200"/>
-
+<img src="https://github.com/jonytipton/LeafLog/assets/42556403/64f7d232-9e4b-4a9a-a9be-4a263c91f42e" width="200"/>
+<img src="https://github.com/jonytipton/LeafLog/assets/42556403/c90a0b41-da09-4639-898d-4697155f5669" width="200"/>
+<img src="https://github.com/jonytipton/LeafLog/assets/42556403/06167442-e316-4f6e-ad86-23cd0e143efa" width="200"/>
 
 </p>
 
